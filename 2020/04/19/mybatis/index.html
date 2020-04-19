@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="-java," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Deng" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="mybatisOGNL表达式 通过对象的取值方法来获取数据 见机行事  mybatis的环境搭建 创建maven工厂并导入坐标 创建实体类和dao接口 创建Mybatis的主配置文件 sqlMapConfig.xml 引入约束 标签下配置 标签优先于任何标签,用于加载其他配置文件,一般引入mysql配置文件 resource属性 url属性:必须按照url写法来写地址 协议 主机 端口 URI U">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mybatis">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/mybatis/index.html">
+<meta property="og:site_name" content="Deng">
+<meta property="og:description" content="mybatisOGNL表达式 通过对象的取值方法来获取数据 见机行事  mybatis的环境搭建 创建maven工厂并导入坐标 创建实体类和dao接口 创建Mybatis的主配置文件 sqlMapConfig.xml 引入约束 标签下配置 标签优先于任何标签,用于加载其他配置文件,一般引入mysql配置文件 resource属性 url属性:必须按照url写法来写地址 协议 主机 端口 URI U">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-19T08:10:08.000Z">
+<meta property="article:modified_time" content="2020-04-19T08:57:38.318Z">
+<meta property="article:author" content="邓浩">
+<meta property="article:tag" content="-java">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/19/mybatis/"/>
+
+
+
+
+
+  <title>mybatis | Deng</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Deng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-kinds">
+          <a href="/Kinds" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kinds
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-all">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            All
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/19/mybatis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓浩">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Deng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mybatis</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-19T16:10:08+08:00">
+                2020-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/19/mybatis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/19/mybatis/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="mybatis"><a href="#mybatis" class="headerlink" title="mybatis"></a>mybatis</h2><h3 id="OGNL表达式"><a href="#OGNL表达式" class="headerlink" title="OGNL表达式"></a>OGNL表达式</h3><ol>
+<li>通过对象的取值方法来获取数据</li>
+<li>见机行事</li>
+</ol>
+<h3 id="mybatis的环境搭建"><a href="#mybatis的环境搭建" class="headerlink" title="mybatis的环境搭建"></a>mybatis的环境搭建</h3><ol>
+<li>创建maven工厂并导入坐标</li>
+<li>创建实体类和dao接口</li>
+<li>创建Mybatis的主配置文件<ol>
+<li>sqlMapConfig.xml<ol>
+<li>引入约束</li>
+<li>标签<configuration>下配置<ol>
+<li><properties>标签优先于任何标签,用于加载其他配置文件,一般引入mysql配置文件<ol>
+<li>resource属性</li>
+<li>url属性:必须按照url写法来写地址<ol>
+<li>协议 主机 端口 URI</li>
+<li>URI:</li>
+</ol>
+</li>
+</ol>
+</properties></li>
+<li><environments>标签配置环境,配置事务管理器和datasource对象 多个<environment>标签中,必须至少有一个标签id和<environments>标签id一致<ol>
+<li><transactionManager>事务管理器标签.<ol>
+<li>type属性取值:<ol>
+<li>JDBC,使用JDBC的回滚和</li>
+<li>提交</li>
+<li>MANAGED ,从不回滚和提交</li>
+<li>如果使用spring中的自定义的事务类来覆盖取值</li>
+</ol>
+</li>
+</ol>
+</transactionManager></li>
+<li><dataSource>
+ 1. type属性取值:
+     1. UNPOOLED,实现了UnpooledDataSource
+         1. 非池,没用数据库连接池,每次发送sql请求时,都会开启链接,完成了会关闭链接...效率较低
+     2. POOLED,实现了PooledDataSource
+         1. 反
+             1. mybatis提供的池,是线程安全的,队列结构
+         2. 使用细节:
+             1. 内部有活动池,和空闲池两个池
+                 1. 如果空闲池中有空闲状态的,直接使用
+                 2. 如果空闲池中无空闲状态的链接,再检查活动池,活动池如果链接数小于最大链接数,则创建一个链接对象
+                 3. 如果空闲池中无空闲状态的链接,且活动池的已到达最大链接数,则会取出活动池的链接时间最久的链接对象,也就是队列为0的连接对象,将其移除,并创建新的连接对象
+     3. JNDI:使用服务器提供的JNDI技术实现,来获取DataSource对象,不同服务器拿到的DataSource不一样.只能在web或maven中的war工程中使用.
+         1. tomcat服务器采用的是dbcp链接池
+         2. 根据服务器的不同,连接池技术也不同..
+         3. 使用JNDI在不同服务器下,需要配置DataSource属性,在tomact服务器下需要在webapp目录下创建META-INF目录下的配置文件进行相关配置(文件夹不能改变)
+         4. 配置文件的位置在<b>java:comp/env/jdbc/文件名</b>.固定不变
+         4. 模仿Windows注册表,采用键值对的形式,记录值,在tomcat服务器中,目录结构可以自己定义,也就是键名,</dataSource></li>
+</ol>
+</environments></environment></environments></li>
+<li><mappers>标签,用于引入配置文件<ol>
+<li><mapper>
+ 1. resource属性:用于指定每个接口映射的配置文件的为止
+ 2. url属性:必须按照url写法来写地址
+ 3. class属性:使用注解时,写该接口全类名则可以实现映射.
+     1. 注意:<b>如果既有注解又有同级目录下的接口映射配置文件,则会报错,所以,当有注解开发时,都使用<package>标签</package></b></mapper></li>
+<li><package>,用于指定dao接口所在的包,当指定完成后,改包下的映射配置文件,自动导入<ol>
+<li>name属性</li>
+</ol>
+</package></li>
+</ol>
+</mappers></li>
+<li><typeAliases>标签,配置别名,只能配置domainl类中的别名<ol>
+<li><typeAlias>配置别名<ol>
+<li>type属性:指定实体类的全类名,</li>
+<li>alias属性:指定属性的别名,指定了之后,别名不分大小写</li>
+</ol>
+</typeAlias></li>
+<li><package>标签,指定配置别名的包,指定了之后,该包下的实体类都会注册一个别名,并且类名就是别名,不区分大小写<ol>
+<li>name属性</li>
+</ol>
+</package></li>
+</ol>
+</typeAliases></li>
+</ol>
+</configuration></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>创建映射配置文件<ol>
+<li>IUserDao.xml </li>
+<li>每个dao的独立配置文件<ol>
+<li>引入约束</li>
+<li>标签<mapper>配置每个接口的映射配置文件<ol>
+<li>有namespace属性,用来精准定位接口中的抽象方法…如果不加,且多个接口中含有相同方法名称则会报错</li>
+</ol>
+</mapper></li>
+<li>再引入各种CRUD标签<ol>
+<li>含有返回值的方法,需要明确定义返回值类型,标签属性resultType</li>
+<li>含参方法,需要明确定义参数类型parameterType</li>
+<li>可以使用#{}占位符,如果参数是对象类型,可以使用对象.属性名赋值,但如果标签中写了参数类型则只需要,写属性名,也就是该属性的setter方法,去掉set首字母变小写即可如….</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"insert"</span> <span class="attr">parameterType</span>=<span class="string">"service.Account"</span>&gt;</span></span><br><span class="line">    insert into account(id,money)values(#&#123;id&#125;,#&#123;money&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>注意事项:<ol>
+<li>创建IUserDao.xml和IUserDao.java时,名称一致,但是我们一般把接口的配置文件叫IUserMapper,但是意义一样.</li>
+<li>在idea中创建目录的时候,他和包是不一样的<ol>
+<li>包可以用点表示级别</li>
+<li>目录不能,只能一级一级创建</li>
+</ol>
+</li>
+<li>mybatis的映射文件配置必须和dao接口的包结构一致</li>
+<li>映射配置文件的操作配置(select),id属性值必须和dao接口中的方法名相同.且必须配置resultType返回值类型,传输全类名</li>
+</ol>
+</li>
+</ol>
+<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><ol>
+<li><p>读取配置文件</p>
+<ol>
+<li>InputStream in=Resources.getResourceAsStream(“主配置文件名”);</li>
+</ol>
+</li>
+<li><p>创建SqlSessionFactory工厂</p>
+<ol>
+<li>SqlSessionFactoryBuilder builder=new SqlSessionFactoryBuild();</li>
+<li>SqlSessionFactory factory=builder.build(in);<ol>
+<li>读取配置文件流对象</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>使用工厂生产SqlSession对象</p>
+<ol>
+<li>SqlSession session=factory.openSession();</li>
+</ol>
+</li>
+<li><p>使用SqlSession创建Dao接口的代理对象</p>
+<ol>
+<li>IuserDao userDao=session.getMapper(IUserDao.class)</li>
+</ol>
+</li>
+<li><p>使用代理对象执行方法</p>
+<ol>
+<li>UserDao.findAll();</li>
+</ol>
+</li>
+<li><p>释放资源  </p>
+<ol>
+<li>session.close();</li>
+<li>in.close();</li>
+</ol>
+</li>
+<li><p>不要忘记在映射接口的配置文件中,定义数据封装的类型</p>
+</li>
+<li><p><b>使用的设计模式</b></p>
+<ol>
+<li>工厂模式<ol>
+<li>使用工厂模式,降低耦合,直接调用方法拿到对象</li>
+</ol>
+</li>
+<li>构建者模式<ol>
+<li>使用sqlSeessionFactoryBuild.build创建了sqlSessionFactory工厂.传入了配置文件字节流..</li>
+<li>该设计模式,隐藏了创建众多诸如与datasource,statement对象的细节,更简化开发</li>
+</ol>
+</li>
+<li>代理模式:<ol>
+<li>对方法增强而不修改源码<br>#####动态SQL</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>如果需要根据某个值来查询,某些数据,但不确定这个值是实体类对象中的哪个属性,如何做</p>
+<ol>
+<li>可以使用<if>标签<ol>
+<li><if>
+ 1. test属性:判断的表达式</if></li>
+</ol>
+</if></li>
+<li>注意,查询语句后需要恒为真如<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select * from user where 1=1</span><br><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username!=null"</span>&gt;</span></span><br><span class="line">and username=#&#123;username&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"age!=null"</span>&gt;</span></span><br><span class="line">age=#&#123;age&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>不要忘记写,参数类型,因为使用了OGNL表达式</p>
+</li>
+<li><p>上例子的另一种写法,更方便</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select * from user</span><br><span class="line"><span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username!=null"</span>&gt;</span></span><br><span class="line">and username=#&#123;username&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"age!=null"</span>&gt;</span></span><br><span class="line">age=#&#123;age&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>SQL IN,select * from user where id in(1,2,3)</p>
+<ol>
+<li>可以使用<foreach>标签<ol>
+<li>collection属性:集合(在实体类中想要传入参数的集合)</li>
+<li>open属性:开始的部分,也就是sql语句:(select * from user)后面部分的拼接<ol>
+<li>and in id(</li>
+</ol>
+</li>
+<li>close属性:结束的部分,也就是紧接着open的后面,一般为)</li>
+<li>item属性:遍历出来的结果存入的变量,OGNL表达式取值名,为item属性值</li>
+<li>separator属性:集合用什么分割,一般是,<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select * from user</span><br><span class="line"><span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"ids(集合名)!=null"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"ids(集合名)"</span> <span class="attr">open</span>=<span class="string">"and in id ("</span> <span class="attr">close</span>=<span class="string">")"</span> <span class="attr">item</span>=<span class="string">"id"</span> <span class="attr">separator</span>=<span class="string">","</span>&gt;</span></span><br><span class="line"> #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h3></li>
+</ol>
+</foreach></li>
+</ol>
+</li>
+<li><p>like #{name} 常用 使用占位符的方式,</p>
+<ol>
+<li>调用方法时,传参加%,如findByName(“%王%”)</li>
+</ol>
+</li>
+<li><p>like ‘%${name}%’    字符串拼接,不常用</p>
+<ol>
+<li>调用时,直接传name值</li>
+</ol>
+</li>
+<li><p>因为两个对象不同,占位符使用的是preperedStatement,字符串拼接的是Statement.</p>
+<h3 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h3></li>
+<li><p>如何获取自增长字段的ID值</p>
+<ol>
+<li>使用select last_insert_id()</li>
+<li>在配置文件中<insert>标签的内部加上<selectKey><ol start="3">
+<li><selectKey>
+       1. keyProperty属性:属性名
+           2. keyColumn属性:数据库字段名
+       3. resultType属性:返回值类型
+         4. order属性:枚举值.有AFTER,BEFORE两个取值,是在执行语句前执行还是在执行语句后执行</selectKey></li>
+</ol>
+</selectKey></insert></li>
+</ol>
+</li>
+<li><p>如何将不相同的数据库列名和实体类属性名对应起来</p>
+<ol>
+<li>使用resultMap标签<ol>
+<li>id标签(主键)<pre><code>1. property属性:
+    3. 实体类的属性名
+2. column属性:数据库列名</code></pre></li>
+<li>reslut标签(非主键)<pre><code>1. property属性:实体类的属性名
+    2. column属性:数据库列名</code></pre></li>
+<li>association标签,用于配置封装一个对象,一对一的关系映射,也使用id和result标签配置成员属性<pre><code>1. javaType属性:用于提示封装到那个对象</code></pre></li>
+<li>collection标签:用于封装一个集合对象.一对多的关系映射也使用id和result标签配置成员属性<pre><code>1. 属性:
+        1. property属性:成员属性名
+            2. column属性:用那个字段查询的
+                3. oftype属性:用于封装到那个对象</code></pre></li>
+</ol>
+</li>
+<li>返回值类型为reslutMap</li>
+<li>上述方法同理于,在sql语句中起别名,但上述xml配置需要解析,效率不如直接写sql语句高</li>
+</ol>
+</li>
+<li><p>注意:mybatis再执行sql的时候,默认的是手动提交,可以再创建sqlSession对象的时候传入参数true.则可以设置自动提交</p>
+</li>
+<li><p>每个配置文件中出现大量重复的sql语句,例如select * from user,我们可以使用<include>标签</include></p>
+<ol>
+<li><include>
+1. refid:根据id值引入</include></li>
+<li>注意:写的时候不要写分号,否则无法评价<h3 id="mybatis中表间关系"><a href="#mybatis中表间关系" class="headerlink" title="mybatis中表间关系"></a>mybatis中表间关系</h3></li>
+</ol>
+</li>
+<li><p>一对一</p>
+</li>
+<li><p>一对多</p>
+<ol>
+<li>例如,查询一个用户,并显示他的所有账户信息</li>
+</ol>
+</li>
+<li><p>多对一</p>
+<ol>
+<li>mybatis中不存在多对一的关系<ol>
+<li>因为mybatis是java框架,面向对象的编程思想,而一个实体类对象,就只能对应另一个实体类对象</li>
+</ol>
+</li>
+<li>例如查询所有账户所对应的用户信息.</li>
+</ol>
+</li>
+<li><p>多对多</p>
+<h3 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h3></li>
+<li><p>延迟加载</p>
+<ol>
+<li>使用到数据的时候才发起查询,不使用的时候不发起,也称懒加载</li>
+<li>通常运用于:一对多,多对多</li>
+<li>延迟加载的是一个对象时:<ol>
+<li><settings>标签:<ol>
+<li><setting>标签<ol>
+<li>name属性:<ol>
+<li>lazyLoadingEnabled:</li>
+<li>agressiveLazyLoading:为假时,每个方法调用都会是按需加载</li>
+</ol>
+</li>
+<li>value属性:boolean</li>
+</ol>
+</setting></li>
+</ol>
+</settings></li>
+</ol>
+</li>
+<li>延迟加载的是对象集合时:<ol>
+<li>collection标签<ol>
+<li>属性select查询的条件,全类名+方法名</li>
+<li>column:根据什么查询</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>立即加载</p>
+<ol>
+<li>不管用不用,一调用方法,则立即加载</li>
+<li>通常运用于:一对一,多对一<br>####缓存</li>
+</ol>
+</li>
+<li><p>缓存的优点</p>
+<ol>
+<li>存在于内存中的临时数据</li>
+<li>减少数据库的交互次数,提高执行效率</li>
+<li>经常查询并且不经常改变的,数据正确与否对最终结果影响不大的适合使用缓存的方式来存储 </li>
+</ol>
+</li>
+<li><p>一级缓存</p>
+<ol>
+<li>SqlSession对象的缓存,执行查询后,查询的结果会同时存入到SqlSession提供的一片区域中,一个Map集合.当我们再次查询同样的数据后,mybatis会先去SqlSession中查询是否已有,有的话就直接返回</li>
+<li>当SqlSession对象消失时,mybatis的一级缓存也就消失了.sqlSession.clearCache也可以清空缓存</li>
+<li>当数据库数据发生更改,一级缓存如何同步?<ol>
+<li>当调用sqlSession的修改,添加,删除,commit,close方法时,一级缓存会被自动清空</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>二级缓存</p>
+<ol>
+<li>指的是SqlSessionFactory对象的缓存,是由同一个SqlSessionFactory对象创建的SqlSession共享其缓存</li>
+<li>使用步骤:<ol>
+<li>让mybatis框架支持二级缓存(在主配置文件中配置)<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"cacheEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">setting</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+​    2. 让当前映射文件支持二级缓存(需要使用二级缓存的接口映射配置文件中)</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code>3. 让当前操作支持二级缓存(在select标签中配置)
+    1. useCache属性:true</code></pre><ol start="3">
+<li>注意事项:<ol>
+<li>二级缓存中存放的是数据,不是对象,每次取值会创建不同的对象</li>
+</ol>
+</li>
+</ol>
+<h3 id="注解版"><a href="#注解版" class="headerlink" title="注解版"></a>注解版</h3><ol>
+<li><p>不需要接口的映射配置文件.在接口上直接加上@Select注解,并指定sql语句,同时需要在主配置文件中配置映射,使用class属性指定dao接口的全类名</p>
+</li>
+<li><p>mybatis支持.写dao实现类    </p>
+</li>
+<li><p>@Results注解:相当于resultMap,创建一个数据库列名和实体类属性的映射</p>
+<ol>
+<li>value属性:<ol>
+<li>一个@Resulet的数组</li>
+<li>@Result<ol>
+<li>id属性:是否为主键boolean类型,默认false</li>
+<li>colum属性:数据库列名</li>
+<li>property属性:实体类属性名</li>
+<li>one属性:一对一专用<ol>
+<li>one=@One()</li>
+<li>@One标签:<ol>
+<li>select属性:<ol>
+<li>指定查询方法的全类名</li>
+</ol>
+</li>
+<li>fetchType属性:EAGER,LAZY<ol>
+<li>指定使用延迟查询还是立即查询</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>many属性:一对多专用<ol>
+<li>many=@Many()</li>
+<li>@many标签:<ol>
+<li>select属性:<ol>
+<li>指定查询方法的全类名</li>
+</ol>
+</li>
+<li>fetchType属性:EAGER,LAZY<ol>
+<li>指定使用延迟查询还是立即查询</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>id属性:用于给定一个唯一标识符</li>
+</ol>
+</li>
+<li><p>@ResultMap:引入一个返回结果的封装类型</p>
+</li>
+<li><p>二级缓存:</p>
+<ol>
+<li>步骤:在主配置文件全局开启二级缓存</li>
+<li>在接口上加@CacheNamespace(blocking=true)</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># -java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/19/MVC/" rel="next" title="MVC">
+                <i class="fa fa-chevron-left"></i> MVC
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/19/Spring/" rel="prev" title="Spring">
+                Spring <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="邓浩" />
+            
+              <p class="site-author-name" itemprop="name">邓浩</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/Tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/deng19723" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="/images/wechat.png" target="_blank" title="Wechat">
+                      
+                        <i class="fa fa-fw fa-wechat"></i>Wechat</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1440197497&auto=0&height=66" ></iframe>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis"><span class="nav-number">1.</span> <span class="nav-text">mybatis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OGNL表达式"><span class="nav-number">1.1.</span> <span class="nav-text">OGNL表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mybatis的环境搭建"><span class="nav-number">1.2.</span> <span class="nav-text">mybatis的环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速入门"><span class="nav-number">1.3.</span> <span class="nav-text">快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊查询"><span class="nav-number">1.4.</span> <span class="nav-text">模糊查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小技巧"><span class="nav-number">1.5.</span> <span class="nav-text">小技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mybatis中表间关系"><span class="nav-number">1.6.</span> <span class="nav-text">mybatis中表间关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延迟加载"><span class="nav-number">1.7.</span> <span class="nav-text">延迟加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解版"><span class="nav-number">1.8.</span> <span class="nav-text">注解版</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓浩</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/04/19/mybatis/';
+          this.page.identifier = '2020/04/19/mybatis/';
+          this.page.title = 'mybatis';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '318xTPO6TrMCmkKKPoiKkPvn-gzGzoHsz',
+        appKey: 'i9qK3ArJRoyQd8qrgrrv4sya',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

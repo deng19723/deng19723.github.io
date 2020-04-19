@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="-操作系统," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Deng" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Linux特点 一款开源的操作系统,免费、稳定、高效,且处理高并发很强悍 应用领域:服务器、嵌入式应用、桌面应用领域 相较于别的操作系统更加安全、稳定,因为linux是开源的,且由所有Linux爱好者 共同维护,发现bug马上就会修复,且其内核可以由使用者自定义裁剪或扩展,使其应用更加的个性化   平时我们说的是Linux的内核,我们使用的是各个厂商对Linux的扩展,产生不同的Linux发行版本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/Linux/index.html">
+<meta property="og:site_name" content="Deng">
+<meta property="og:description" content="Linux特点 一款开源的操作系统,免费、稳定、高效,且处理高并发很强悍 应用领域:服务器、嵌入式应用、桌面应用领域 相较于别的操作系统更加安全、稳定,因为linux是开源的,且由所有Linux爱好者 共同维护,发现bug马上就会修复,且其内核可以由使用者自定义裁剪或扩展,使其应用更加的个性化   平时我们说的是Linux的内核,我们使用的是各个厂商对Linux的扩展,产生不同的Linux发行版本">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-19T08:09:39.000Z">
+<meta property="article:modified_time" content="2020-04-19T08:52:46.871Z">
+<meta property="article:author" content="邓浩">
+<meta property="article:tag" content="-操作系统">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/19/Linux/"/>
+
+
+
+
+
+  <title>Linux | Deng</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Deng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-kinds">
+          <a href="/Kinds" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kinds
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-all">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            All
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/19/Linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓浩">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Deng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-19T16:09:39+08:00">
+                2020-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/19/Linux/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/19/Linux/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ol>
+<li>一款开源的操作系统,免费、稳定、高效,且处理高并发很强悍</li>
+<li>应用领域:服务器、嵌入式应用、桌面应用领域<ol>
+<li>相较于别的操作系统更加安全、稳定,因为linux是开源的,且由所有Linux爱好者 共同维护,发现bug马上就会修复,且其内核可以由使用者自定义裁剪或扩展,使其应用更加的个性化</li>
+</ol>
+</li>
+<li>平时我们说的是Linux的内核,我们使用的是各个厂商对Linux的扩展,产生不同的Linux发行版本,我用的是CentOS,常用的还有Redhat和Ubuntu<h3 id="Linux和Unix以及Windows"><a href="#Linux和Unix以及Windows" class="headerlink" title="Linux和Unix以及Windows"></a>Linux和Unix以及Windows</h3></li>
+<li>Unix最先诞生,由B语言基础演变成了C语言开发,功能进一步强大,然后由各大互联网公司买来制作成各自的Unix发行版本,但收费且费用很高,然后促进的GUN计划(自己开发软件层),Linux在GUN计划的推动下诞生,Linux在Minix(Unix的一个发行版)的基础上开发</li>
+<li>GUN计划<ol>
+<li>人—&gt;硬件….实现在人机之间的软件层软件自由.由所有程序员共同发展.</li>
+<li>人—软件—Shell—操作系统—&gt;硬件<h4 id="Linux和Windows"><a href="#Linux和Windows" class="headerlink" title="Linux和Windows"></a>Linux和Windows</h4>
+<h3 id="我使用的与Linux相关的软件"><a href="#我使用的与Linux相关的软件" class="headerlink" title="我使用的与Linux相关的软件"></a>我使用的与Linux相关的软件</h3></li>
+</ol>
+</li>
+<li>虚拟机 VMware</li>
+<li>CentOS</li>
+<li>远程登录XShell5</li>
+<li>文件共享XFTP6</li>
+<li>vmtools<ol>
+<li>可以直接粘贴命令在windows和centos系统之间</li>
+<li>可以设置windows和centos的共享文件夹<ol>
+<li>虚拟机设置 vm–&gt;setting,设置选项菜单为always enable</li>
+<li>windows和centos可共享文件的目录</li>
+<li>在centos的/mnt/hgfs/下<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>在Linux中一切皆文件</li>
+<li>Linux采用树状的目录结构
+<ol>
+<li><strong>/bin:存放最常使用的命令</strong></li>
+<li>/sbin:存放的是系统管理员使用的系统管理程序(超级管理员的命令)</li>
+<li><strong>/home:存放普通用户的主目录,一般以用户名命名</strong></li>
+<li><strong>/root:系统管理员目录</strong></li>
+<li>/lib:开机所需要的动态链接共享库,应用程序也需</li>
+<li>/lost+found:非法关机后存放一些文件</li>
+<li><strong>/etc:存放系统管理的配置文件</strong></li>
+<li><strong>/usr:许多应用程序和文件存放在此目录下类似于program files目录</strong></li>
+<li><strong>/boot:存放Linux的核心文件(内核)</strong></li>
+<li>/proc:系统内存的映射,一个虚拟目录,可以访问这个目录获取系统信息</li>
+<li>/srv:service的缩写,存放一些服务启动后需要提取的数据</li>
+<li>/sys</li>
+<li><strong>/tmp:临时文件目录,存放临时文件的</strong></li>
+<li>/dev:存放设备的,类似于设备管理器</li>
+<li><strong>/media:存放媒体设备的.当Linux识别到媒体设备后,会把识别的设备挂载到这个目录下</strong></li>
+<li><strong>/mnt:系统提供该目录为了让用户临时挂载别的文件系统的,可以将外部的存储挂载在/mnt/上,然后进入该目录就可以查看里的内容</strong></li>
+<li><strong>/opt:安装软件摆放的目录,安装包</strong></li>
+<li><strong>/usr/loacl:给主机额外安装软件的所安装的目录,安装完成就存放的目录/</strong></li>
+<li><strong>/var:经常存放不断修改的文件,一般将日志文件存放在此文件夹下</strong></li>
+<li>/selinux:SELinux是一种安全子系统,他能控制程序只访问特定文件<h3 id="远程登录和远程上传和下载"><a href="#远程登录和远程上传和下载" class="headerlink" title="远程登录和远程上传和下载"></a>远程登录和远程上传和下载</h3></li>
+</ol>
+</li>
+<li>Linux一般作用于服务器领域,而服务器一般在各个厂商的机房中,所以需要远程登录到机房的Linux中…..XShell可以实现远程登录,XFTP可以远程上传和下载文件的<h4 id="XShell"><a href="#XShell" class="headerlink" title="XShell"></a>XShell</h4></li>
+<li>没有中文乱码问题.支持SSH1,SSH2和TELNET协议</li>
+<li>使用XShell的前提是,Linux服务器必须开启sshd服务..22号端口<h4 id="XFTP"><a href="#XFTP" class="headerlink" title="XFTP"></a>XFTP</h4></li>
+<li>用于文件远程上传和下载<h3 id="vi-和-vim"><a href="#vi-和-vim" class="headerlink" title="vi 和 vim"></a>vi 和 vim</h3><h4 id="vi"><a href="#vi" class="headerlink" title="vi"></a>vi</h4></li>
+<li>所有的Linux系统都会内建vi编辑器</li>
+<li>现在不常用vi编辑器<h4 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h4></li>
+<li>具有程序编辑的能力,可以看成vi的增强版</li>
+<li>可以主动的以字体颜色辨别语法的正确性,方便程序设计</li>
+<li>代码补充、编译及错误跳转等方便编程的功能特别丰富<h5 id="vim的使用"><a href="#vim的使用" class="headerlink" title="vim的使用"></a>vim的使用</h5><h6 id="正常模式"><a href="#正常模式" class="headerlink" title="正常模式"></a>正常模式</h6></li>
+<li>以vim打开一个文档,直接进入的模式<h6 id="插入模式-编辑模式"><a href="#插入模式-编辑模式" class="headerlink" title="插入模式/编辑模式"></a>插入模式/编辑模式</h6></li>
+<li>该模式下能输入内容<h6 id="命令行模式"><a href="#命令行模式" class="headerlink" title="命令行模式"></a>命令行模式</h6></li>
+<li>此模式,提供相关指令,完成读取,存盘,替换,退出vim,显示行号等操作<h4 id="vi和vim模式的相互切换"><a href="#vi和vim模式的相互切换" class="headerlink" title="vi和vim模式的相互切换"></a>vi和vim模式的相互切换</h4></li>
+<li>由正常模式—-&gt;编辑模式:i</li>
+<li>由正常模式—-&gt;命令行模式: 输入:</li>
+<li>常用的命令行的命令<ol>
+<li>wq:保存并退出</li>
+<li>q:退出</li>
+<li>q!:强制退出<h5 id="vi和vim中常用的快捷键"><a href="#vi和vim中常用的快捷键" class="headerlink" title="vi和vim中常用的快捷键"></a>vi和vim中常用的快捷键</h5></li>
+</ol>
+</li>
+<li>复制: nyy 复制几行就写几,如5yy,从当前行向下复制5行……只能在正常模式使用</li>
+<li>粘贴: p</li>
+<li>删除: ndd 删除几行就写几,如5yy,从当前行向下删除5行……只能在正常模式使用</li>
+<li>查找:在命令行下 输入 /关键字,按回车查找,输入n就是查询下一个……命令行</li>
+<li>设置文件的行号,取消文件的行号:命令行下:set nu 和 set nonu</li>
+<li>到达文首:gg……正常模式</li>
+<li>到达文尾:G……正常模式</li>
+<li>撤销:u    ……正常模式</li>
+<li>光标移动到第n行:输入n,shift+g<h3 id="关机-amp-重启"><a href="#关机-amp-重启" class="headerlink" title="关机&amp;重启"></a>关机&amp;重启</h3><h4 id="shutdown"><a href="#shutdown" class="headerlink" title="shutdown"></a>shutdown</h4><ol>
+<li>shutdown -h now:立即关机</li>
+<li>shutdown -h 1:1分钟后关机</li>
+<li>shutdown -r now:立即重启<h4 id="halt"><a href="#halt" class="headerlink" title="halt"></a>halt</h4></li>
+</ol>
+</li>
+<li>直接使用,效果等价于关机<h4 id="reboot"><a href="#reboot" class="headerlink" title="reboot"></a>reboot</h4></li>
+<li>重启<h4 id="sync"><a href="#sync" class="headerlink" title="sync"></a>sync</h4></li>
+<li>把内存的数据保存到磁盘上,关机前需要执行的命令<h3 id="用户登录和注销"><a href="#用户登录和注销" class="headerlink" title="用户登录和注销"></a>用户登录和注销</h3></li>
+<li>登录时尽量少用root账号登录,因为权限过大,避免操作失误.一般使用普通用户登录,然后再使用”su -username”命令来切换成管理员身份</li>
+<li>在终端中输入logout即可注销</li>
+</ol>
+<ul>
+<li>注意: logout在运行级别5下无效,在3下才有效</li>
+<li>运行级别:<ol>
+<li>级别 0 :关机</li>
+<li>级别 1 :单用户(找回丢失密码)</li>
+<li>级别 2 :多用户无网络服务</li>
+<li>级别 3 :多用户有网络服务</li>
+<li>级别 4 :保留</li>
+<li>级别 5 :图形界面</li>
+<li>级别 6 :重启<h3 id="指令篇"><a href="#指令篇" class="headerlink" title="指令篇"></a>指令篇</h3><h4 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h4></li>
+</ol>
+</li>
+</ul>
+<ol>
+<li>家目录:创建用户后,会在/home下创建各自的家目录,当用户登录后,会自动的进入到各自的家目录</li>
+<li>Linux系统是一个多用户多任务的操作系统,任何一个使用系统资源的用户,都必须像系统管理员申请一个账号,然后以这个账号的身份进入系统</li>
+<li>Linux的用户需要至少要属于一个组<h5 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h5></li>
+<li>添加用户: useradd [选项] 用户名(添加成功后会自动在/home/创建一个和用户名一样的家目录)<ol>
+<li>操作:<ol>
+<li>d: 指定目录,为新用户指定一个家目录</li>
+<li>g: 添加到指定组</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>指定/修改密码 : passwd 用户名</li>
+<li>删除用户: userdel 用户名(一般保存家目录)<ol>
+<li>操作:<ol>
+<li>r: 同时删除家目录</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>查询用户信息: id 用户名<ol>
+<li>返回值:<ol>
+<li>uid(用户id) gid(组id) 组(组名)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>切换用户:su -切换用户名(一般用于当前用户权限不够,可通过su -指令切换到更高权限的用户)<ol>
+<li>细节: 从权限高的用户切换到权限低的用户,无需密码,返回到原来用户时使用exit</li>
+</ol>
+</li>
+<li>查看当前用户/登录用户:who am i<h4 id="用户组"><a href="#用户组" class="headerlink" title="用户组"></a>用户组</h4></li>
+<li>Linux使用组对用户权限进行管理,系统可以对由共性的多个用户进行统一的管理</li>
+<li>用户和组的相关文件<ol>
+<li>/etc/passwd<ol>
+<li>用户的配置文件,记录用户的各种信息<ol>
+<li>每行的含义: 用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>/etc/shadow<ol>
+<li>口令的配置文件<ol>
+<li>每行的含义: 登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动时间:失效时间:标志</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>/etc/group<ol>
+<li>组(group)的配置文件,记录Linux包含的组的信息<ol>
+<li>每行的含义: 组名:口令:组标识号:组内用户列表<h5 id="指令-1"><a href="#指令-1" class="headerlink" title="指令"></a>指令</h5></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>新增组: groupadd 组名</li>
+<li>删除组: groupdel 组名</li>
+<li>修改组: usermod -g 用户组 用户名<h3 id="运行级别"><a href="#运行级别" class="headerlink" title="运行级别"></a>运行级别</h3></li>
+</ol>
+<ul>
+<li><p>运行级别:</p>
+<ol>
+<li>级别 0 :关机</li>
+<li>级别 1 :单用户(找回丢失密码)</li>
+<li>级别 2 :多用户无网络服务</li>
+<li>级别 3 :多用户有网络服务</li>
+<li>级别 4 :保留</li>
+<li>级别 5 :图形界面</li>
+<li>级别 6 :重启</li>
+</ol>
+</li>
+<li><p>init 来切换不同的运行级别 init<a href="重启后不报存">012356</a></p>
+</li>
+<li><p>系统的运行级别配置文件 /etc/inittab(CentOS7 以后该配置文件为空)</p>
+</li>
+<li><p>CentOS7以后使用systemctl命令</p>
+<table>
+<thead>
+<tr>
+<th><strong>systemctl</strong></th>
+<th align="left"><strong>命令 说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>systemctl get-default</td>
+<td align="left">获得当前的运行级别</td>
+</tr>
+<tr>
+<td>systemctl set-default multi-user.target</td>
+<td align="left">设置默认的运行级别为mulit-user</td>
+</tr>
+<tr>
+<td>systemctl isolate multi-user.target</td>
+<td align="left">在不重启的情况下，切换到运行级别mulit-user下</td>
+</tr>
+<tr>
+<td>systemctl isolate graphical.target</td>
+<td align="left">在不重启的情况下，切换到图形界面下</td>
+</tr>
+<tr>
+<td>应用实例:</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>1. root用户如何找回密码(远程)</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>1. 在加载前,编辑一些界面e</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h3><ol>
+<li>可以了解某个指令的具体语法<h4 id="man-获得帮助信息"><a href="#man-获得帮助信息" class="headerlink" title="man 获得帮助信息"></a>man 获得帮助信息</h4></li>
+<li>man [命令或配置文件]<h4 id="help-命令"><a href="#help-命令" class="headerlink" title="help [命令]"></a>help [命令]</h4></li>
+</ol>
+<h3 id="文件目录类"><a href="#文件目录类" class="headerlink" title="文件目录类"></a>文件目录类</h3><h4 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h4><ol>
+<li>显示当前工作目录的绝对路径<h4 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h4></li>
+<li>ls [选项]   [目录或是文件]</li>
+<li>常用选项<ol>
+<li>-a :显示当前目录的所有文件和目录,包括隐藏目录</li>
+<li>-l :以列表的形式显示信息<h4 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h4></li>
+</ol>
+</li>
+<li>cd [参数]<ol>
+<li>常用参数<ol>
+<li>绝对路径和相对路径</li>
+<li>cd ~ /cd :     回到自己的家目录</li>
+<li>cd .. 返回上一级目录<h4 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h4></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>创建目录</li>
+<li>mkdir [选项] 要创建的目录<ol>
+<li>常用选项<ol>
+<li>-p:创建多级目录<h4 id="rmdir"><a href="#rmdir" class="headerlink" title="rmdir"></a>rmdir</h4></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>删除指定空目录</li>
+<li>rmdir [选项] 要删除的空目录</li>
+<li><strong>rmdir只能删除空目录,如果目录下有内容无法删除,如果要删除非空目录,则需要使用rm-rf删除</strong><h4 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h4></li>
+<li>创建空文件</li>
+<li>touch 文件名称<h4 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h4></li>
+<li>拷贝文件到指定目录</li>
+<li>cp [选项] source destination<ol>
+<li>常用选项<ol>
+<li>-r : 递归复制整个文件夹</li>
+</ol>
+</li>
+<li>常见问题 : 目标目录存在该文件或者文件夹,则会提示,使用    <strong>\ cp命令    强制覆盖不提示</strong> <h4 id="rm指令"><a href="#rm指令" class="headerlink" title="rm指令"></a>rm指令</h4></li>
+</ol>
+</li>
+<li>rm指令移除文件或目录</li>
+<li>rm [选项] 要删除的文件或目录<ol>
+<li>常用选项<ol>
+<li>-r : 递归删除整个文件夹</li>
+<li>-f :  强制删除不提示<h4 id="mv指令"><a href="#mv指令" class="headerlink" title="mv指令"></a>mv指令</h4></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>移动文件与目录或重命名</li>
+<li>mv oldNameFile newNameFile    (重命名)</li>
+<li>mv /temp/movefile /targetFolder    (移动文件)<h4 id="cat指令"><a href="#cat指令" class="headerlink" title="cat指令"></a>cat指令</h4></li>
+<li>查看文件内容</li>
+<li>cat [选项] 要查看的文件<ol>
+<li>常用选项:<ol>
+<li>-n : 显示行号</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>cat只能浏览文件而不能修改文件,为了浏览方便,一般会带上管道指令 | more(分页显示指令)<ol>
+<li>管道指令 : | 相当于数据库的连接,,,,是在”|”前的指令执行完的基础上执行后面的指令<h4 id="more指令"><a href="#more指令" class="headerlink" title="more指令"></a>more指令</h4></li>
+</ol>
+</li>
+<li>基于vi编辑器的文本过滤器,全屏显示,按分页的方式显示文本内容,内置了许多快捷键</li>
+<li>more  要查看的文件<ol>
+<li>常用快捷键:<ol>
+<li>space : 向下翻一页</li>
+<li>Enter : 向下翻一行</li>
+<li>q : 立刻离开,不再显示该页内容</li>
+<li>Ctrl+F : 向下滚动一屏</li>
+<li>Ctrl+B : 返回上一屏</li>
+<li>= : 输出当前行的行号</li>
+<li>f : 输出文件名和当前行号<h4 id="less指令"><a href="#less指令" class="headerlink" title="less指令"></a>less指令</h4></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>和more指令类似,分屏显示文件内容,但比more更夹高效,每次只加载屏幕显示的内容,其余部分,用时才加载(类似于懒加载)</li>
+<li>less  要查看的文件<ol>
+<li>常用快捷键:<ol>
+<li>space : 向下翻一页</li>
+<li>pagedown : 向下翻一页</li>
+<li>pageup : 向上翻一页</li>
+<li>/字符串 : 向下搜寻[字符串]的功能 : n向下查找(查找下一个),N向上查找(查找上一个</li>
+<li>?字符串 : 向上的功能 : n向上查找(查找上一个),N向下查找(查找下一个)</li>
+<li>q : 立刻离开,不再显示该页内容<h4 id="gt-指令"><a href="#gt-指令" class="headerlink" title="&gt; 指令"></a>&gt; 指令</h4></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>输出重定向 (覆盖目标文件文本内容)</li>
+<li>实例<ol>
+<li>ls -l &gt; 文件 (将列表内容写入到文件中(覆盖))</li>
+<li>cat 文件1 &gt; 文件2 (将文件1写入到文件2(覆盖))<h4 id="gt-gt-指令"><a href="#gt-gt-指令" class="headerlink" title="&gt;&gt;指令"></a>&gt;&gt;指令</h4></li>
+</ol>
+</li>
+<li>追加(在目标文件后追加内容)<ol>
+<li>ls -l &gt;&gt; 文件 (将列表内容追加到文件中)<h4 id="echo指令"><a href="#echo指令" class="headerlink" title="echo指令"></a>echo指令</h4></li>
+</ol>
+</li>
+<li>输出内容到控制台</li>
+<li>echo [选项]  [输出内容]<h4 id="head指令"><a href="#head指令" class="headerlink" title="head指令"></a>head指令</h4></li>
+<li>显示文件的开头部分内容,默认显示文件前十行内容</li>
+<li>head 文件(查看文件前十行内容)</li>
+<li>head -n 5 文件(查看文件前5行内容)<h4 id="tail指令"><a href="#tail指令" class="headerlink" title="tail指令"></a>tail指令</h4></li>
+<li>用于输出文件中尾部的内容,默认情况下tail指令显示文件的后十行内容</li>
+<li>tail 文件(功能描述:查看文件的后十行内容)</li>
+<li>tail -n 5 文件(功能描述:查看文件后五行内容,5可以是任意行数)</li>
+<li><strong>tail -f 文件(实时追踪该文档的所有更新)重点</strong><h4 id="ln指令"><a href="#ln指令" class="headerlink" title="ln指令"></a>ln指令</h4></li>
+<li>软链接也叫符号连接,类似于windows里的快捷方式,主要存放了链接其他文件的路径</li>
+<li>ln -s [原文件或目录]  [软连接名] (给原文件创建一个软链接)</li>
+<li>但是pwd过后,所在的目录是在软连接目录下(相当于在桌面上打开了一个文件,可以看见其中的各种目录结构,但是还在桌面上)</li>
+<li>删除 rm -rf 软连接名<h4 id="history指令"><a href="#history指令" class="headerlink" title="history指令"></a>history指令</h4></li>
+<li>查看已经执行过的历史命令,也可以执行历史指令</li>
+<li>history(显示所有)</li>
+<li>history 数字(显示n个最近执行的指令)</li>
+<li>!n (执行历史执行编号为n的指令)<h3 id="时间日期类"><a href="#时间日期类" class="headerlink" title="时间日期类"></a>时间日期类</h3><h4 id="date指令-显示当前日期"><a href="#date指令-显示当前日期" class="headerlink" title="date指令 显示当前日期"></a>date指令 显示当前日期</h4></li>
+<li>date (显示当前时间)</li>
+<li>date +%Y (显示当前年份)</li>
+<li>date +%m(显示当前月份)</li>
+<li>date +%d(显示当前是哪一天)</li>
+<li>date “+%Y-%m-%d %H:%M:%S”(显示年月日时分秒)</li>
+<li>date -s  字符串时间 (2018-10-10 11:22:33)符号不能变<h4 id="cal指令"><a href="#cal指令" class="headerlink" title="cal指令"></a>cal指令</h4></li>
+<li>查看日历指令</li>
+<li>cal [选项] 不加选项,显示本月日历</li>
+<li>cal 2020 显示2020年日历<h3 id="搜索查找类"><a href="#搜索查找类" class="headerlink" title="搜索查找类"></a>搜索查找类</h3><h4 id="find指令"><a href="#find指令" class="headerlink" title="find指令"></a>find指令</h4></li>
+<li>find指令将从指定目录下递归的遍历各个子目录,将满足条件的文件或者目录显示在终端</li>
+<li>find [搜索范围]  [选项]<ol>
+<li>常用选项<ol>
+<li>-name 查询方式, 按照指定的文件名查找模式,查找文件</li>
+<li>-user 用户名, 查找指定用户名下的所有文件</li>
+<li>-size 文件大小,按照指定的文件大小查找文件<ol>
+<li>+n,-n,=n,分别标识大于,小于,等于文件大小,注意要加单位
+<h4 id="locate指令"><a href="#locate指令" class="headerlink" title="locate指令"></a>locate指令</h4></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>快速定位文件路径,利用事先建立的数据库实现快速定位给定文件(系统中的所有文件名称和路径),,查询速度较快,但为了保证结果的准确度,管理员必须定期更新locate数据库</li>
+<li>locate 搜索文件</li>
+<li>locate指令是基于locate数据库进行查询,所以第一次运行前,必须使用updatedb指令,创建数据库<h4 id="grep指令和管道符号"><a href="#grep指令和管道符号" class="headerlink" title="grep指令和管道符号 |"></a>grep指令和管道符号 |</h4></li>
+<li>grep过滤查找,管道符,”|”,标识将前一个命令的处理结果输出传递给后面的命令处理</li>
+<li>grep [选项] 查找内容 源文件<ol>
+<li>常用选项<ol>
+<li>-n 显示匹配行及行号</li>
+<li>-i 忽略字母大小写
+<h3 id="压缩和解压类"><a href="#压缩和解压类" class="headerlink" title="压缩和解压类"></a>压缩和解压类</h3><h4 id="gzip指令"><a href="#gzip指令" class="headerlink" title="gzip指令"></a>gzip指令</h4></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>压缩文件</li>
+<li>gzip 文件 (压缩文件,只能将文件压缩为*.gz文件)<h4 id="gunzip指令"><a href="#gunzip指令" class="headerlink" title="gunzip指令"></a>gunzip指令</h4></li>
+<li>解压文件</li>
+<li>gunzip 文件 (压缩文件,只能将文件压缩为*.gz文件)<h4 id="zip指令"><a href="#zip指令" class="headerlink" title="zip指令"></a>zip指令</h4></li>
+<li>压缩文件</li>
+<li>zip [选项] XXX.zip 目录/文件 将要压缩文件的内容 (压缩文件和目录的命令)<ol>
+<li>常用选项<ol>
+<li>-r : 递归压缩,即压缩目录<h4 id="unzip指令"><a href="#unzip指令" class="headerlink" title="unzip指令"></a>unzip指令</h4></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>解压文件</li>
+<li>unzip  [选项] XXX.zip 目录/文件(解压缩文件)<ol>
+<li>常用选项<ol>
+<li>-d 目录 : 指定解压后的文件存放目录<h4 id="tar-指令"><a href="#tar-指令" class="headerlink" title="tar 指令"></a>tar 指令</h4></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>打包指令,最后打包后的文件是.tar.gz文件</li>
+<li>tar [选项] XXX.tar.gz 打包的内容 (打包目录,压缩后的文件是tar.gz类型)<ol>
+<li>常用选项<ol>
+<li>-c : 产生.tar打包文件</li>
+<li>-v : 显示详细信息</li>
+<li>-f : 指定压缩后的文件名</li>
+<li>-z : 打包同时压缩</li>
+<li>-x : 解包.tar文件</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>压缩文件 tar -zcvf a.tar.gz 1.txt hello.txt</li>
+<li>解压文件 tar -zcvf a.tar.gz 1.txt hello.txt -C /home
+<h3 id="组的介绍-文件-与权限有关"><a href="#组的介绍-文件-与权限有关" class="headerlink" title="组的介绍(文件)与权限有关"></a>组的介绍(文件)与权限有关</h3></li>
+<li>所有者( 文件的所有者)</li>
+<li>所在组(文件的所在组)</li>
+<li>其他组(除了文件的所在组的其他组)<h4 id="chgrp指令-修改文件所在组"><a href="#chgrp指令-修改文件所在组" class="headerlink" title="chgrp指令(修改文件所在组)"></a>chgrp指令(修改文件所在组)</h4></li>
+<li>修改文件所在组</li>
+<li>chgrp 组名 文件名
+<h4 id="usermod-改变用户所在组"><a href="#usermod-改变用户所在组" class="headerlink" title="usermod(改变用户所在组)"></a>usermod(改变用户所在组)</h4></li>
+<li>改变用户所在组</li>
+<li>usermod -g 组名 用户名</li>
+<li>usermod -d 目录名 用户名 改变该用户登录的初始目录<h3 id="文件的权限"><a href="#文件的权限" class="headerlink" title="文件的权限"></a>文件的权限</h3></li>
+<li>第一位: 代表文件的类型<ol>
+<li>l    : 软连接</li>
+<li><ul>
+<li>: 普通文件</li>
+</ul>
+</li>
+<li>d   : 目录</li>
+<li>c   : 字符设备[键盘鼠标等]</li>
+<li>b   : 块文件,硬盘</li>
+</ol>
+</li>
+<li>2~4位: 文件所有者的权限</li>
+<li>5~7:和文件所在组的所有组员的权限</li>
+<li>8~10:其他组成员的权限<ol>
+<li>r :读权限</li>
+<li>w:写权限</li>
+<li>x:执行权限,作用于文件代表可执行,作用与目录代表可进入该目录</li>
+<li>-:无权限 </li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>注意: 删除文件必须对该文件有写权限不一定能删除,还需对该文件的目录有写权限才能删除该文件<h4 id="chmod-修改文件或目录的权限"><a href="#chmod-修改文件或目录的权限" class="headerlink" title="chmod(修改文件或目录的权限)"></a>chmod(修改文件或目录的权限)</h4></li>
+</ul>
+<ol>
+<li>修改文件或目录的权限</li>
+<li>第一种方式<ol>
+<li>u:所有,,,,g:所在组,,,,o:其他人,,,,a:所有人(u,g,o的总和)<ol>
+<li>chmod u=rwx,g=rx,o=x 文件目录名<ol>
+<li>给所有者添加读写执行权限,给所在组添加读和执行权限,给其他人添加执行权限</li>
+</ol>
+</li>
+<li>chmod o+w 文件目录名<ol>
+<li>给其他人添加写的权限</li>
+</ol>
+</li>
+<li>chmod a-x 文件目录名<ol>
+<li>给所有人添加执行的权限</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>第二种方式:通过数字变更权限<ol>
+<li>r=4,w=2,x=1<ol>
+<li>chmod 751 文件目录名<ol>
+<li>给所有者添加读写执行权限,给所在组添加读和执行权限,给其他人添加执行权限<h4 id="chown-修改文件所有者"><a href="#chown-修改文件所有者" class="headerlink" title="chown(修改文件所有者)"></a>chown(修改文件所有者)</h4></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>修改文件所有者</li>
+<li>chown newowner file 改变文件所有者</li>
+<li>chown newowner:newgroup file 改变用户的所有者和所有组</li>
+<li>-R 如果是目录 则递归<h3 id="定时任务调度"><a href="#定时任务调度" class="headerlink" title="定时任务调度"></a>定时任务调度</h3></li>
+<li>系统在某个时间执行特定的命令或程序</li>
+<li>分类:<ol>
+<li>系统工作,重要工作必须周而复始的执行</li>
+<li>个别用户工作,如备份数据库等<h4 id="crond"><a href="#crond" class="headerlink" title="crond"></a>crond</h4></li>
+</ol>
+</li>
+<li>crontab [选项]<ol>
+<li>常用选项<ol>
+<li>-e : 编辑crontab定时任务</li>
+<li>-l : 查询crontab任务</li>
+<li>-f : 删除当前用户所有crontab任务</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>快速入门:<ol>
+<li>设置任务调度文件:/etc/crontab</li>
+<li>设置个人任务调度.执行crontab -e 命令</li>
+<li>输入任务到调度任务</li>
+</ol>
+</li>
+<li>参数解释
+
+
+<h3 id="磁盘分区和挂载"><a href="#磁盘分区和挂载" class="headerlink" title="磁盘分区和挂载"></a>磁盘分区和挂载</h3></li>
+<li>分区的方式<ol>
+<li>mbr分区:<ol>
+<li>老式分区方式</li>
+<li>最多支持四个主分区</li>
+<li>系统只能安装在主分区上</li>
+<li>扩展分区要占一个主分区</li>
+<li>MBR分区最大只支持2TB,但是兼容性较好</li>
+</ol>
+</li>
+<li>gtp分区:<ol>
+<li>支持无限多个主分区(但是操作系统有限制,比如windows下最多128个分区)</li>
+<li>最大支持18EB的容量(EB=1024PB,PB=1024TB)</li>
+<li>WIN764位以后支持gtp</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>在Linux中,硬盘以挂载在文件系统中的形式,将分区和目录结构联系起来</li>
+<li>硬盘标号:<ol>
+<li>IDE硬盘:老, hdx~<ol>
+<li>例如hda3,代表第一块硬盘的第三个分区</li>
+</ol>
+</li>
+<li>SCSI硬盘:新,sdx~<ol>
+<li>例如sdb2,代表第二块硬盘的第二个分区<h4 id="lsblk-查看系统分区和挂载情况"><a href="#lsblk-查看系统分区和挂载情况" class="headerlink" title="lsblk(查看系统分区和挂载情况)"></a>lsblk(查看系统分区和挂载情况)</h4></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>查看系统分区和挂载情况(老师不离开)
+<h4 id="df-h-磁盘情况查询"><a href="#df-h-磁盘情况查询" class="headerlink" title="df -h(磁盘情况查询)"></a>df -h(磁盘情况查询)</h4><h4 id="du-ach-查询指定目录的磁盘占用情况"><a href="#du-ach-查询指定目录的磁盘占用情况" class="headerlink" title="du -ach(查询指定目录的磁盘占用情况)"></a>du -ach(查询指定目录的磁盘占用情况)</h4></li>
+<li>-s指定目录占用大小总额</li>
+<li>-h带计量单位</li>
+<li>-a含文件</li>
+<li>–max-depth=1 子目录深度</li>
+<li>-c 列出明细的同时,增加汇总值<h3 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h3></li>
+<li>自动连接(非固定的ip)</li>
+<li>固定ip<ol>
+<li>修改配置文件来指定ip,并可以连接外网</li>
+<li>编写/etc/sysconfig/network-scripts/ifcfg-eth0(第几块网卡)
+<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3></li>
+</ol>
+</li>
+<li>每个执行的程序,都为一个进程,每个进程都有一个id号</li>
+<li>每个进程都对应一个父进程,父进程可以复制多个子进程<h4 id="ps-显示系统执行的进程"><a href="#ps-显示系统执行的进程" class="headerlink" title="ps(显示系统执行的进程)"></a>ps(显示系统执行的进程)</h4></li>
+<li>查看系统执行的进程,以及执行状况,可以不加参数</li>
+<li>ps 显示的信息项:<ol>
+<li>PID:进程识别号</li>
+<li>TTY:终端机号</li>
+<li>TIME:此进程所消耗CPU时间</li>
+<li>CMD:正在执行的命令或进程名</li>
+</ol>
+</li>
+<li>操作:<ol>
+<li>-a :显示当前终端所有进程信息</li>
+<li>-u:以用户的格式显示进程信息</li>
+<li>-x:显示后台进程运行的参数</li>
+</ol>
+</li>
+<li>系统进程参数<ol>
+<li>%CPU:cpu占用情况</li>
+<li>%MEM:内存占用</li>
+<li>VSZ:占用虚拟内存</li>
+<li>RSS:使用物理内存情况</li>
+<li>TTY:使用的终端</li>
+<li>STAT:进行状态<ol>
+<li>s:休眠</li>
+<li>r:运行</li>
+</ol>
+</li>
+<li>COMMAND:进程执行时的命令行</li>
+<li><strong>PPID:父进程号,可以使用ps -ef命令得到</strong><h4 id="kill-amp-killall-终止进程"><a href="#kill-amp-killall-终止进程" class="headerlink" title="kill&amp;killall(终止进程)"></a>kill&amp;killall(终止进程)</h4></li>
+</ol>
+</li>
+<li>终止进程</li>
+<li>kill [选项] 进程号 (通过进程号杀死进程)</li>
+<li>killall 进程名称 (通过进程名称杀死进程,也支持通配符)</li>
+<li>常用选项<ol>
+<li>-9 : 强迫进程立即停止<h4 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h4></li>
+</ol>
+</li>
+<li>服务本质就是进程,但是运行在后台,通常会监听某个端口,等待其他程序的请求,比如(mysql,sshd,防火墙等等),因此我们又称为守护进程</li>
+<li>service 服务名 start|stop|restart|reload|status</li>
+<li><strong>systemctl centos7以后使用这个</strong><h4 id="top指令-动态监控进程"><a href="#top指令-动态监控进程" class="headerlink" title="top指令(动态监控进程)"></a>top指令(动态监控进程)</h4></li>
+<li>和ps指令相似,但是top指令可以在执行的一段时间可以更新正在运行的进程</li>
+<li>top [选项]<ol>
+<li>常用选项<ol>
+<li>-d 秒数,指定每个几秒更新,默认3秒</li>
+<li>-i:使得top指令不显示任何闲置或者僵死进程</li>
+<li>-p:通过指定监控进程ID来只监控某个进程的状态<h3 id="软件包的管理"><a href="#软件包的管理" class="headerlink" title="软件包的管理"></a>软件包的管理</h3><h4 id="rpm"><a href="#rpm" class="headerlink" title="rpm"></a>rpm</h4></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>RedHat Package Manager ,互联网下载包,及安装工具<h5 id="查询已经安装的rpm列表"><a href="#查询已经安装的rpm列表" class="headerlink" title="查询已经安装的rpm列表"></a>查询已经安装的rpm列表</h5></li>
+<li>rpm -qa | grep xx<h5 id="查询软件包是否安装"><a href="#查询软件包是否安装" class="headerlink" title="查询软件包是否安装"></a>查询软件包是否安装</h5></li>
+<li>rpm -a xx<h5 id="查询软件包信息"><a href="#查询软件包信息" class="headerlink" title="查询软件包信息"></a>查询软件包信息</h5></li>
+<li>rpm -qi xx<h5 id="查询软件包文件"><a href="#查询软件包文件" class="headerlink" title="查询软件包文件"></a>查询软件包文件</h5></li>
+<li>rpm -ql<h5 id="查询文件所属软件包"><a href="#查询文件所属软件包" class="headerlink" title="查询文件所属软件包"></a>查询文件所属软件包</h5></li>
+<li>rpm -qf 路径<h4 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h4></li>
+<li>一个shell前端软件包管理器.基于RPM包管理,能从指定的服务器自动帮我们下载RPM包并安装,可以自动处理依赖性关系,并可以一次安装所有依赖的软件包</li>
+<li>yum list | grep xx软件列表   查询yum服务器是否需要安装的软件</li>
+<li>yum install xxx 安装指定的yum包</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"># -操作系统</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/19/jsp/" rel="next" title="jsp">
+                <i class="fa fa-chevron-left"></i> jsp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/19/MVC/" rel="prev" title="MVC">
+                MVC <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="邓浩" />
+            
+              <p class="site-author-name" itemprop="name">邓浩</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/Tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/deng19723" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="/images/wechat.png" target="_blank" title="Wechat">
+                      
+                        <i class="fa fa-fw fa-wechat"></i>Wechat</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1440197497&auto=0&height=66" ></iframe>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux"><span class="nav-number">1.</span> <span class="nav-text">Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.0.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux和Unix以及Windows"><span class="nav-number">1.0.2.</span> <span class="nav-text">Linux和Unix以及Windows</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux和Windows"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">Linux和Windows</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我使用的与Linux相关的软件"><span class="nav-number">1.0.3.</span> <span class="nav-text">我使用的与Linux相关的软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">1.0.4.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程登录和远程上传和下载"><span class="nav-number">1.0.5.</span> <span class="nav-text">远程登录和远程上传和下载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#XShell"><span class="nav-number">1.0.5.1.</span> <span class="nav-text">XShell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XFTP"><span class="nav-number">1.0.5.2.</span> <span class="nav-text">XFTP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vi-和-vim"><span class="nav-number">1.0.6.</span> <span class="nav-text">vi 和 vim</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vi"><span class="nav-number">1.0.6.1.</span> <span class="nav-text">vi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vim"><span class="nav-number">1.0.6.2.</span> <span class="nav-text">vim</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#vim的使用"><span class="nav-number">1.0.6.2.1.</span> <span class="nav-text">vim的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#正常模式"><span class="nav-number">1.0.6.2.1.1.</span> <span class="nav-text">正常模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#插入模式-编辑模式"><span class="nav-number">1.0.6.2.1.2.</span> <span class="nav-text">插入模式&#x2F;编辑模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#命令行模式"><span class="nav-number">1.0.6.2.1.3.</span> <span class="nav-text">命令行模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vi和vim模式的相互切换"><span class="nav-number">1.0.6.3.</span> <span class="nav-text">vi和vim模式的相互切换</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#vi和vim中常用的快捷键"><span class="nav-number">1.0.6.3.1.</span> <span class="nav-text">vi和vim中常用的快捷键</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关机-amp-重启"><span class="nav-number">1.0.7.</span> <span class="nav-text">关机&amp;重启</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#shutdown"><span class="nav-number">1.0.7.1.</span> <span class="nav-text">shutdown</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#halt"><span class="nav-number">1.0.7.2.</span> <span class="nav-text">halt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reboot"><span class="nav-number">1.0.7.3.</span> <span class="nav-text">reboot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sync"><span class="nav-number">1.0.7.4.</span> <span class="nav-text">sync</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户登录和注销"><span class="nav-number">1.0.8.</span> <span class="nav-text">用户登录和注销</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令篇"><span class="nav-number">1.0.9.</span> <span class="nav-text">指令篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户管理"><span class="nav-number">1.0.9.1.</span> <span class="nav-text">用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#指令"><span class="nav-number">1.0.9.1.1.</span> <span class="nav-text">指令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户组"><span class="nav-number">1.0.9.2.</span> <span class="nav-text">用户组</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#指令-1"><span class="nav-number">1.0.9.2.1.</span> <span class="nav-text">指令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行级别"><span class="nav-number">1.0.10.</span> <span class="nav-text">运行级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#帮助指令"><span class="nav-number">1.0.11.</span> <span class="nav-text">帮助指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#man-获得帮助信息"><span class="nav-number">1.0.11.1.</span> <span class="nav-text">man 获得帮助信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#help-命令"><span class="nav-number">1.0.11.2.</span> <span class="nav-text">help [命令]</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件目录类"><span class="nav-number">1.0.12.</span> <span class="nav-text">文件目录类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pwd"><span class="nav-number">1.0.12.1.</span> <span class="nav-text">pwd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ls"><span class="nav-number">1.0.12.2.</span> <span class="nav-text">ls</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cd"><span class="nav-number">1.0.12.3.</span> <span class="nav-text">cd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mkdir"><span class="nav-number">1.0.12.4.</span> <span class="nav-text">mkdir</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rmdir"><span class="nav-number">1.0.12.5.</span> <span class="nav-text">rmdir</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#touch"><span class="nav-number">1.0.12.6.</span> <span class="nav-text">touch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cp"><span class="nav-number">1.0.12.7.</span> <span class="nav-text">cp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rm指令"><span class="nav-number">1.0.12.8.</span> <span class="nav-text">rm指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mv指令"><span class="nav-number">1.0.12.9.</span> <span class="nav-text">mv指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cat指令"><span class="nav-number">1.0.12.10.</span> <span class="nav-text">cat指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#more指令"><span class="nav-number">1.0.12.11.</span> <span class="nav-text">more指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#less指令"><span class="nav-number">1.0.12.12.</span> <span class="nav-text">less指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gt-指令"><span class="nav-number">1.0.12.13.</span> <span class="nav-text">&gt; 指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gt-gt-指令"><span class="nav-number">1.0.12.14.</span> <span class="nav-text">&gt;&gt;指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#echo指令"><span class="nav-number">1.0.12.15.</span> <span class="nav-text">echo指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#head指令"><span class="nav-number">1.0.12.16.</span> <span class="nav-text">head指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tail指令"><span class="nav-number">1.0.12.17.</span> <span class="nav-text">tail指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ln指令"><span class="nav-number">1.0.12.18.</span> <span class="nav-text">ln指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#history指令"><span class="nav-number">1.0.12.19.</span> <span class="nav-text">history指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间日期类"><span class="nav-number">1.0.13.</span> <span class="nav-text">时间日期类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#date指令-显示当前日期"><span class="nav-number">1.0.13.1.</span> <span class="nav-text">date指令 显示当前日期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cal指令"><span class="nav-number">1.0.13.2.</span> <span class="nav-text">cal指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索查找类"><span class="nav-number">1.0.14.</span> <span class="nav-text">搜索查找类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#find指令"><span class="nav-number">1.0.14.1.</span> <span class="nav-text">find指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#locate指令"><span class="nav-number">1.0.14.2.</span> <span class="nav-text">locate指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#grep指令和管道符号"><span class="nav-number">1.0.14.3.</span> <span class="nav-text">grep指令和管道符号 |</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩和解压类"><span class="nav-number">1.0.15.</span> <span class="nav-text">压缩和解压类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gzip指令"><span class="nav-number">1.0.15.1.</span> <span class="nav-text">gzip指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gunzip指令"><span class="nav-number">1.0.15.2.</span> <span class="nav-text">gunzip指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zip指令"><span class="nav-number">1.0.15.3.</span> <span class="nav-text">zip指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unzip指令"><span class="nav-number">1.0.15.4.</span> <span class="nav-text">unzip指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tar-指令"><span class="nav-number">1.0.15.5.</span> <span class="nav-text">tar 指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组的介绍-文件-与权限有关"><span class="nav-number">1.0.16.</span> <span class="nav-text">组的介绍(文件)与权限有关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#chgrp指令-修改文件所在组"><span class="nav-number">1.0.16.1.</span> <span class="nav-text">chgrp指令(修改文件所在组)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#usermod-改变用户所在组"><span class="nav-number">1.0.16.2.</span> <span class="nav-text">usermod(改变用户所在组)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件的权限"><span class="nav-number">1.0.17.</span> <span class="nav-text">文件的权限</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#chmod-修改文件或目录的权限"><span class="nav-number">1.0.17.1.</span> <span class="nav-text">chmod(修改文件或目录的权限)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chown-修改文件所有者"><span class="nav-number">1.0.17.2.</span> <span class="nav-text">chown(修改文件所有者)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定时任务调度"><span class="nav-number">1.0.18.</span> <span class="nav-text">定时任务调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#crond"><span class="nav-number">1.0.18.1.</span> <span class="nav-text">crond</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#磁盘分区和挂载"><span class="nav-number">1.0.19.</span> <span class="nav-text">磁盘分区和挂载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lsblk-查看系统分区和挂载情况"><span class="nav-number">1.0.19.1.</span> <span class="nav-text">lsblk(查看系统分区和挂载情况)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#df-h-磁盘情况查询"><span class="nav-number">1.0.19.2.</span> <span class="nav-text">df -h(磁盘情况查询)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#du-ach-查询指定目录的磁盘占用情况"><span class="nav-number">1.0.19.3.</span> <span class="nav-text">du -ach(查询指定目录的磁盘占用情况)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络配置"><span class="nav-number">1.0.20.</span> <span class="nav-text">网络配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程管理"><span class="nav-number">1.0.21.</span> <span class="nav-text">进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ps-显示系统执行的进程"><span class="nav-number">1.0.21.1.</span> <span class="nav-text">ps(显示系统执行的进程)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#kill-amp-killall-终止进程"><span class="nav-number">1.0.21.2.</span> <span class="nav-text">kill&amp;killall(终止进程)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务管理"><span class="nav-number">1.0.21.3.</span> <span class="nav-text">服务管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#top指令-动态监控进程"><span class="nav-number">1.0.21.4.</span> <span class="nav-text">top指令(动态监控进程)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件包的管理"><span class="nav-number">1.0.22.</span> <span class="nav-text">软件包的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rpm"><span class="nav-number">1.0.22.1.</span> <span class="nav-text">rpm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查询已经安装的rpm列表"><span class="nav-number">1.0.22.1.1.</span> <span class="nav-text">查询已经安装的rpm列表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查询软件包是否安装"><span class="nav-number">1.0.22.1.2.</span> <span class="nav-text">查询软件包是否安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查询软件包信息"><span class="nav-number">1.0.22.1.3.</span> <span class="nav-text">查询软件包信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查询软件包文件"><span class="nav-number">1.0.22.1.4.</span> <span class="nav-text">查询软件包文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查询文件所属软件包"><span class="nav-number">1.0.22.1.5.</span> <span class="nav-text">查询文件所属软件包</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#yum"><span class="nav-number">1.0.22.2.</span> <span class="nav-text">yum</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓浩</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/04/19/Linux/';
+          this.page.identifier = '2020/04/19/Linux/';
+          this.page.title = 'Linux';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '318xTPO6TrMCmkKKPoiKkPvn-gzGzoHsz',
+        appKey: 'i9qK3ArJRoyQd8qrgrrv4sya',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

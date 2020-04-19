@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="-java -异步," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Deng" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Ajax &amp;&amp;JsonAJax 概念:ASynchronous JavaScript And XML &amp;nbsp;&amp;nbsp;&amp;nbsp;异步的JavaScript和XML  异步和同步:客户端和服务器端相互通信的基础上,提升了用户的体验… 同步: 在执行同步代码的时候,就会给代码块上锁,其他代码必须等待执行完毕才能继续执行,,,,线程安全问题需使用,防止多线程共同同时操作一个数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajax&amp;Json">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/Ajax-Json/index.html">
+<meta property="og:site_name" content="Deng">
+<meta property="og:description" content="Ajax &amp;&amp;JsonAJax 概念:ASynchronous JavaScript And XML &amp;nbsp;&amp;nbsp;&amp;nbsp;异步的JavaScript和XML  异步和同步:客户端和服务器端相互通信的基础上,提升了用户的体验… 同步: 在执行同步代码的时候,就会给代码块上锁,其他代码必须等待执行完毕才能继续执行,,,,线程安全问题需使用,防止多线程共同同时操作一个数据">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-19T08:08:55.000Z">
+<meta property="article:modified_time" content="2020-04-19T08:40:28.024Z">
+<meta property="article:author" content="邓浩">
+<meta property="article:tag" content="-java -异步">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/19/Ajax-Json/"/>
+
+
+
+
+
+  <title>Ajax&Json | Deng</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Deng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-kinds">
+          <a href="/Kinds" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kinds
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-all">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            All
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/19/Ajax-Json/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓浩">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Deng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Ajax&Json</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-19T16:08:55+08:00">
+                2020-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/19/Ajax-Json/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/19/Ajax-Json/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Ajax-amp-amp-Json"><a href="#Ajax-amp-amp-Json" class="headerlink" title="Ajax &amp;&amp;Json"></a>Ajax &amp;&amp;Json</h2><h3 id="AJax"><a href="#AJax" class="headerlink" title="AJax"></a>AJax</h3><ol>
+<li><p>概念:ASynchronous JavaScript And XML &nbsp;&nbsp;&nbsp;异步的JavaScript和XML</p>
+<ol>
+<li>异步和同步:客户端和服务器端相互通信的基础上,提升了用户的体验…</li>
+<li>同步:<ul>
+<li>在执行同步代码的时候,就会给代码块上锁,其他代码必须等待执行完毕才能继续执行,,,,线程安全问题需使用,防止多线程共同同时操作一个数据,而出错</li>
+</ul>
+</li>
+<li>异步:<ul>
+<li>可并发执行.实现页面的部分更新操作</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>快速入门(原生JS的方式::::不怎么使用,一般使用JQ框架提供的)</p>
+<ol>
+<li>创建对象XMLHttpRequest<ul>
+<li>ps:有的浏览器不支持XMLHttpRequest对象.如果不支持则需要创建ActiveXObject对象<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xmlhttp;</span><br><span class="line"><span class="keyword">if</span> (window.XMLHttpRequest)</span><br><span class="line">  &#123;<span class="comment">// code for IE7+, Firefox, Chrome, Opera, Safari</span></span><br><span class="line">  xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  &#123;<span class="comment">// code for IE6, IE5</span></span><br><span class="line">  xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>调用方法open(method,url,async)方法规定请求的类型为GET 还是POST,文件的类型,和是否为异步请求,true 为异步请求</li>
+<li>调用方法send,将请求发送到服务器</li>
+</ol>
+</li>
+<li><p>快速入门(JQ)</p>
+<ol>
+<li>$.ajax()<ol>
+<li>语法:$.ajax({键值对})    每个键值对后面加逗号,最后一个不加<ol>
+<li>$.ajax({url:”servlet”,type:”Post”},data:{JSON格式},也可以为函数,success:function(){}或者error:function(){},dataType:设置接受响应的文本类型)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>$.get()<ol>
+<li>语法:$.get(url,[data],[callback],[type])<ol>
+<li>参数:<ol>
+<li>url:请求路径</li>
+<li>data:请求参数</li>
+<li>callback:回调函数</li>
+<li>type:响应结果类型</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>$.post()</li>
+</ol>
+</li>
+<li><p>响应 </p>
+<ul>
+<li>需求:需要获取来自服务器的响应,如果是非XML文件则使用,XMLHttpRequest对象的responseText属性,否则则使用responseXML属性<br>xmlhttp.onreadystatechange=function(){<br>  if(xmlhttp.readyState==4&amp;&amp;xmlhttp.status==200)<pre><code>var responseText=xmlhttp.responseText</code></pre></li>
+<li>responseText   获得字符串形式的响应数据。</li>
+<li>responseXML    获得 XML 形式的响应数据<br>}<br>###JSON</li>
+</ul>
+</li>
+<li><p>概念: JavaScript Object Natation    JavaScript对象表示法</p>
+<ol>
+<li>Person p=new Person();</li>
+<li>p.setName(“章三”);</li>
+<li>p.setAge(23);</li>
+<li>p.setGender(“男”)</li>
+<li>var&nbsp;&nbsp;p={“name”:”张三”,”age”:”23”,”gender”:”男”};<ul>
+<li>json现在多用于存储和交换文本信息的语法</li>
+<li>进行数据传输</li>
+<li>JSON比XML更小、更快,更易解析</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>语法:</p>
+<ol>
+<li><p>基本规则</p>
+<ul>
+<li>数据在名称/值键值对中:json数据是由键值对构成的<ul>
+<li>键用引号(单双都行)引起来,也可以不使用引号</li>
+<li>值的取值类型<ul>
+<li>数字(整数或者浮点数)</li>
+<li>字符串(在双引号中)</li>
+<li>逻辑值(true或者false)</li>
+<li>数组(在方括号中)<ul>
+<li>{“person”:[{},{},{}]}</li>
+</ul>
+</li>
+<li>对象(在花括号中){“address”:{对象的成员属性}}</li>
+<li>null</li>
+</ul>
+</li>
+<li>数据由逗号分隔:多个键值对由逗号分隔开</li>
+<li>花括号保留对象:使用{}定义json格式</li>
+<li>方括号保存数组:[]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>获取数据</p>
+<ol>
+<li>json对象.键名</li>
+<li>json对象[“键名”]</li>
+<li>数组对象[索引]</li>
+<li>遍历<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.定义基本格式</span></span><br><span class="line"><span class="keyword">var</span> person=&#123;<span class="string">"name"</span>:<span class="string">"zhangsan"</span>,<span class="string">"age"</span>:<span class="number">23</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> ps=&#123;&#123;<span class="string">"name"</span>:<span class="string">"zhangsan"</span>,<span class="string">"age"</span>:<span class="number">23</span>&#125;,&#123;<span class="string">"name"</span>:<span class="string">"zhangsi"</span>,<span class="string">"age"</span>:<span class="number">25</span>&#125;&#125;;</span><br><span class="line"><span class="comment">//获取person对象中的所有键和值</span></span><br><span class="line"><span class="comment">//for in 循环</span></span><br><span class="line"><span class="comment">/*for(var key in person)&#123;</span></span><br><span class="line"><span class="comment">//这样的方式获取不想.因为相当于person."name"</span></span><br><span class="line"><span class="comment">//alert(key+":"+person.key)</span></span><br><span class="line"><span class="comment">alert(key+":"+person[key]);&#125;*/</span></span><br><span class="line"><span class="comment">//获取ps中的所有值</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;ps.length;i++)&#123;</span><br><span class="line"><span class="keyword">var</span> p=ps[i]</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> p)&#123;</span><br><span class="line">alert(key+<span class="string">":"</span>+p[key])&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>JSON数据和Java对象的相互转化</p>
+<ol>
+<li>JSON解析器<ol>
+<li>常见的解析器:JSONlib,Gson,fastjson,jackson</li>
+<li>json转为java对象<ol>
+<li><ol>
+<li>导入jackson的相关jar包<ol start="2">
+<li>创建jackson核心对象 objectMapper</li>
+<li>调用objectMapper的相关方法进行转换<ol>
+<li>readValue(json字符串数据,)</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>java对象转换为json<ol>
+<li>使用步骤<ol>
+<li>导入jackson的相关jar包</li>
+<li>创建jackson核心对象 objectMapper</li>
+<li>调用objectMapper的相关方法进行转换<ol>
+<li>转换方法:<ol>
+<li>writeValue(参数1,转化的对象.Class);<ol>
+<li>参数1:<ol>
+<li>File:将obj对象转为json字符串,并保存到指定文件中</li>
+<li>Writer:将obj对象转为json字符串,并保存到指定字符输出流中</li>
+<li>OutputStream:将obj对象转为json字符串,并保存到指定字节输出流中</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>writeValueAsStream(obj):将对象转为json字符串</li>
+</ol>
+</li>
+<li>注解:<ol>
+<li>@JsonIgnore:在javaBean的成员上添加该注解,则会自动忽略该属性转换时</li>
+<li>@JsonFormat:属性格式化<ol>
+<li>@JsonFormat(pattern=”yyyy-MM-dd”)</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>####json字符串对象在javaScript中需要有json字符串对象转化为json对象</p>
+<ol>
+<li>JSON.parse(String);</li>
+<li>json对象转为json字符串，调用JSON.stringify()方法<figure class="highlight plain"><figcaption><span>str </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">####在servlet或者jsp</span><br><span class="line">1、json对象转字符串</span><br><span class="line">&#96;&#96;&#96;JSONObject.fromObject（String ）；</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><b>ps注意括号内的要是String,StringBuffer 转换之后得到的json对象是空的</b></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">"&#123;\"name\":\"小明\",\"pwd\":123456&#125;"</span>;<span class="comment">//json字符串</span></span><br><span class="line">JSONObject obj = JSONObject.fromObject(str);<span class="comment">//转换成json对象</span></span><br><span class="line">String name = obj.get(<span class="string">"name"</span>);<span class="comment">//通过方法可以获取其中元素</span></span><br></pre></td></tr></table></figure>
+<p>2、创建json对象<br>利用toString方法可转换成字符串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">JSONObject ob =<span class="keyword">new</span>  JSONObject();</span><br><span class="line">ob.accumulate(<span class="string">"name"</span>,<span class="string">"小明"</span>);</span><br><span class="line">ob.accumulate(<span class="string">"pwd"</span>, <span class="number">123456</span>);</span><br><span class="line">ob.accumulate(<span class="string">"age"</span>, <span class="number">18</span>);</span><br><span class="line">ob.accumulate(<span class="string">"sex"</span>, <span class="string">"男"</span>);</span><br><span class="line">String a = ob.toString();<span class="comment">//转换成字符串</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java-%E5%BC%82%E6%AD%A5/" rel="tag"># -java -异步</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/19/Springboot/" rel="next" title="Springboot">
+                <i class="fa fa-chevron-left"></i> Springboot
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/19/Jquery/" rel="prev" title="Jquery">
+                Jquery <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="邓浩" />
+            
+              <p class="site-author-name" itemprop="name">邓浩</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/Tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/deng19723" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="/images/wechat.png" target="_blank" title="Wechat">
+                      
+                        <i class="fa fa-fw fa-wechat"></i>Wechat</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1440197497&auto=0&height=66" ></iframe>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ajax-amp-amp-Json"><span class="nav-number">1.</span> <span class="nav-text">Ajax &amp;&amp;Json</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AJax"><span class="nav-number">1.1.</span> <span class="nav-text">AJax</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓浩</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/04/19/Ajax-Json/';
+          this.page.identifier = '2020/04/19/Ajax-Json/';
+          this.page.title = 'Ajax&Json';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '318xTPO6TrMCmkKKPoiKkPvn-gzGzoHsz',
+        appKey: 'i9qK3ArJRoyQd8qrgrrv4sya',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

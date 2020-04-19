@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="-java," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Deng" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="MVC:开发模式 jsp演变历史  早期只有servlet,只能使用response输出标签数据,非常麻烦 后来有了jsp,简化了Servlet的开发,如果过度使用jsp,在jsp中写大量的Java代码,又写html,造成难以维护,难以分工协作 再后来.java的web开发,借鉴mvc开发模式,使得程序的设计更加合理 2.MVC:    Model View Controller M:Model,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVC">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/MVC/index.html">
+<meta property="og:site_name" content="Deng">
+<meta property="og:description" content="MVC:开发模式 jsp演变历史  早期只有servlet,只能使用response输出标签数据,非常麻烦 后来有了jsp,简化了Servlet的开发,如果过度使用jsp,在jsp中写大量的Java代码,又写html,造成难以维护,难以分工协作 再后来.java的web开发,借鉴mvc开发模式,使得程序的设计更加合理 2.MVC:    Model View Controller M:Model,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-19T08:09:57.000Z">
+<meta property="article:modified_time" content="2020-04-19T08:55:15.605Z">
+<meta property="article:author" content="邓浩">
+<meta property="article:tag" content="-java">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/19/MVC/"/>
+
+
+
+
+
+  <title>MVC | Deng</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Deng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-kinds">
+          <a href="/Kinds" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kinds
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-all">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            All
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/19/MVC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓浩">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Deng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MVC</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-19T16:09:57+08:00">
+                2020-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/19/MVC/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/19/MVC/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="MVC-开发模式"><a href="#MVC-开发模式" class="headerlink" title="MVC:开发模式"></a>MVC:开发模式</h2><ol>
+<li><p>jsp演变历史</p>
+<ol>
+<li>早期只有servlet,只能使用response输出标签数据,非常麻烦</li>
+<li>后来有了jsp,简化了Servlet的开发,如果过度使用jsp,在jsp中写大量的Java代码,又写html,造成难以维护,难以分工协作</li>
+<li>再后来.java的web开发,借鉴mvc开发模式,使得程序的设计更加合理<br> 2.MVC:    Model View Controller</li>
+<li>M:Model,模型.JavaBean<ol>
+<li>完成具体的业务操作,如:查询数据库,封装对象</li>
+</ol>
+</li>
+<li>V:view,视图.jsp<ol>
+<li>展示数据</li>
+</ol>
+</li>
+<li>C:Controller,控制器.Servlet<ol>
+<li>获取用户的输入</li>
+<li>调用模型</li>
+<li>将数据交给视图进行展示</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>优缺点:</p>
+<ol>
+<li><p>优点:  </p>
+<ol>
+<li>耦合性低,便于维护,可以利于分工协作</li>
+<li>重用性高</li>
+</ol>
+</li>
+<li><p>缺点:  </p>
+<ol>
+<li>使得项目架构变得复杂,对开发人员要求高
+<h4 id="需要在JSP页面写少量的java代码-EL表达式的诞生"><a href="#需要在JSP页面写少量的java代码-EL表达式的诞生" class="headerlink" title="需要在JSP页面写少量的java代码(EL表达式的诞生)"></a>需要在JSP页面写少量的java代码(EL表达式的诞生)</h4></li>
+</ol>
+</li>
+<li><p>概念:Expression Language</p>
+</li>
+<li><p>作用:替换和简化jsp页面中java代码的编写</p>
+</li>
+<li><p>语法:${}</p>
+</li>
+<li><p>注意:</p>
+<ol>
+<li>jsp默认支持el表达式,如果需要忽略el表达式<ol>
+<li>设置jsp中的page指令:isElIgnored=”true”,忽略当前jsp页面中所有的el表达式</li>
+<li>${表达式}:忽略当前这个El表达式</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>使用:</p>
+<ol>
+<li>运算<ol>
+<li>运算符:<ol>
+<li>算数运算符: +  -  *  /(div) %(mod)</li>
+<li>比较运算符:&gt; &lt;  &gt;=  &lt;= !=</li>
+<li>逻辑运算符:&amp;&amp;(and)  ||(or)  !(not)</li>
+<li>空运算符:empty<ol>
+<li>功能:用于判断字符串,集合,数组对象是否为null并且长度是否为0</li>
+<li>${empty 判断对象} boolean </li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>获取值<ol>
+<li>El表达式只能从域对象中获取值</li>
+<li>语法:<ol>
+<li>${域名.键名}:从指定域中获取指定键值<ol>
+<li>域名称:<ol>
+<li>pageScope        –&gt;pageContext</li>
+<li>requestSCope        –&gt;request</li>
+<li>sessionScope        –&gt;session</li>
+<li>applicationScope    –&gt;application(ServletContext)<ol>
+<li>举例:在request域中存储了name=章三</li>
+<li>获取${requestScope.name}</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>${键名}:表示依次从最小的域中查找是否有该键对应的值,直到找到为止</li>
+<li>获取对象.List集合,Map集合的值<ol>
+<li>对象:${域名称.键名.属性名}<ol>
+<li>本质上回去调用对象的getter方法<ol>
+<li>属性名:是getter方法去掉了get前缀并把后面的首字母变为小写,为属性,并不是成员变量</li>
+<li>如getName属性为name,但并不是成员变量name</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>List集合:${域名称.键名[索引]}</li>
+<li>Map集合:<ol>
+<li>${域名称.键名.key名称}</li>
+<li>${域名称.键名[“key名称”]} </li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>隐式对象:<ol>
+<li>El表达式中有11个隐式对象</li>
+<li>pageContext:<ol>
+<li>获取jsp其他八个内置对象<ol>
+<li>${pageContext.requst.contextPath}:动态获取虚拟目录</li>
+<li>MVC的具体表现.动态的获取虚拟路径.方便程序的维护<h4 id="JSTL"><a href="#JSTL" class="headerlink" title="JSTL"></a>JSTL</h4></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>概念:JavaServer Pages Tag Library JSP标准标签库</p>
+<ol>
+<li>是由Apache组织提供的开源的免费的jsp标签    &lt;标签&gt;</li>
+</ol>
+</li>
+<li><p>作用:用于简化和替换jsp页面上的java代码</p>
+</li>
+<li><p>使用步骤</p>
+<ol>
+<li>导入jstl相关的jar包</li>
+<li>引入标签库:taglib指令:&lt;%@ taglib %&gt;</li>
+<li>使用标签</li>
+</ol>
+</li>
+<li><p>常用的标签</p>
+<ol>
+<li>if:相当于java代码的if语句<ol>
+<li>属性:<ol>
+<li>test必须属性,接受一个boolean表达式<ol>
+<li>如果为true,则显示if标签体内容,如果为false,则不显示<ol>
+<li>一般情况下,test属性值会结合el表达式一起使用</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>注意:c:if标签没有else情况,想要else情况,必须多定义一个c:if</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>choose:相当于java代码的switch语句<ol>
+<li>使用choose标签声明            相当于switch声明</li>
+<li>使用when标签做判断            相当于case</li>
+<li>使用otherwise标签做其他情况的声明    相当于default</li>
+</ol>
+</li>
+<li>foreach:相当于java代码的for语句<ol>
+<li>完成重复的操作<ol>
+<li>for(i=0;i&lt;10;i++){}<ol>
+<li>属性:<ol>
+<li>begin:开始值</li>
+<li>end:结束值</li>
+<li>var:临时变量</li>
+<li>step:步长</li>
+<li>varStatus:循环状态对象<ol>
+<li>index:容器中元素的索引,从0开始</li>
+<li>count:循环次数,从1开始</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>遍历容器<ol>
+<li>List<User> list;<br> for(User user: list){}<ol>
+<li>属性:<ol>
+<li>items:容器对象</li>
+<li>var:容器中元素的临时变量</li>
+<li>varStatus:循环状态对象<ol>
+<li>index:容器中元素的索引,从0开始</li>
+<li>count:循环次数,从1开始</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</User></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>​         </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># -java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/19/Linux/" rel="next" title="Linux">
+                <i class="fa fa-chevron-left"></i> Linux
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/19/mybatis/" rel="prev" title="mybatis">
+                mybatis <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="邓浩" />
+            
+              <p class="site-author-name" itemprop="name">邓浩</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/Tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/deng19723" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="/images/wechat.png" target="_blank" title="Wechat">
+                      
+                        <i class="fa fa-fw fa-wechat"></i>Wechat</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1440197497&auto=0&height=66" ></iframe>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC-开发模式"><span class="nav-number">1.</span> <span class="nav-text">MVC:开发模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需要在JSP页面写少量的java代码-EL表达式的诞生"><span class="nav-number">1.0.1.</span> <span class="nav-text">需要在JSP页面写少量的java代码(EL表达式的诞生)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSTL"><span class="nav-number">1.0.2.</span> <span class="nav-text">JSTL</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓浩</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/04/19/MVC/';
+          this.page.identifier = '2020/04/19/MVC/';
+          this.page.title = 'MVC';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '318xTPO6TrMCmkKKPoiKkPvn-gzGzoHsz',
+        appKey: 'i9qK3ArJRoyQd8qrgrrv4sya',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

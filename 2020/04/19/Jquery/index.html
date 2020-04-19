@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="-前端," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Deng" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="JQuery基础概念: Jquery是一个快速、简介的JavaScript框架,是继Prototype之后又一个优秀的JavaScript代码库(或JavaScript框架).JQuery设计的宗旨是”write less,Do more”,即倡导写更少的代码,做更多的失去.他封装JavaScript常用的功能代码,提供了一种边界的JavaScript设计模式,优化HTML文档操作,事件处理,动画">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jquery">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/Jquery/index.html">
+<meta property="og:site_name" content="Deng">
+<meta property="og:description" content="JQuery基础概念: Jquery是一个快速、简介的JavaScript框架,是继Prototype之后又一个优秀的JavaScript代码库(或JavaScript框架).JQuery设计的宗旨是”write less,Do more”,即倡导写更少的代码,做更多的失去.他封装JavaScript常用的功能代码,提供了一种边界的JavaScript设计模式,优化HTML文档操作,事件处理,动画">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-19T08:09:08.000Z">
+<meta property="article:modified_time" content="2020-04-19T08:41:21.412Z">
+<meta property="article:author" content="邓浩">
+<meta property="article:tag" content="-前端">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/19/Jquery/"/>
+
+
+
+
+
+  <title>Jquery | Deng</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Deng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-kinds">
+          <a href="/Kinds" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kinds
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-all">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            All
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/19/Jquery/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓浩">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Deng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Jquery</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-19T16:09:08+08:00">
+                2020-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/19/Jquery/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/19/Jquery/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="JQuery基础"><a href="#JQuery基础" class="headerlink" title="JQuery基础"></a>JQuery基础</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念:"></a>概念:</h3><ol>
+<li>Jquery是一个快速、简介的JavaScript框架,是继Prototype之后又一个优秀的JavaScript代码库(或JavaScript框架).JQuery设计的宗旨是”write less,Do more”,即倡导写更少的代码,做更多的失去.他封装JavaScript常用的功能代码,提供了一种边界的JavaScript设计模式,优化HTML文档操作,事件处理,动画设计,和Ajax交互  </li>
+<li>JavaScript框架:本质上是一些JS文件,封装了JS的原生代码  </li>
+</ol>
+<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><ol>
+<li><p>步骤:  </p>
+<ol>
+<li>下载JQuery(1代兼容ie678,2开始不兼容,3不兼容一些老的js插件(增强jq对象))</li>
+<li>导入JQ的js文件</li>
+<li>使用</li>
+</ol>
+</li>
+<li><p>Jquery对象和JS对象的区别与转换</p>
+<ol>
+<li>JQ对象在操作时,会更加的方便….框架的共同优点</li>
+<li>JQ对象和JS对象的方法不通用</li>
+<li>两者相互转换<ol>
+<li>JQ—&gt;JS:JQ[索引]或者JQ.get(索引)</li>
+<li>JS—&gt;JQ:$(JQ)<h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>基本操作:</p>
+<ol>
+<li>事件绑定<ol>
+<li>$(选择器).事件        //等同于使用DOM获取标签对象   去掉on</li>
+</ol>
+</li>
+<li>入口函数  <ol>
+<li>$(function(){})<ol>
+<li>和window.onload区别<ol>
+<li>window.onload只能定义一次,多次会被覆盖</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>样式控制<ol>
+<li>JQ对象.css(键值对);</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>分类</p>
+<ol>
+<li>基本选择器<ol>
+<li>标签选择器(元素选择器)<ul>
+<li>语法: $(“标签名”) 获得所有与标签名相同的元素对象</li>
+</ul>
+</li>
+<li>id选择器<ul>
+<li>语法: $(“#id”)    获得与id值相同的元素对象</li>
+</ul>
+</li>
+<li>类选择器<ul>
+<li>语法: $(“.class”)    获得与class值相同的元素对象</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>层级选择器<ol>
+<li>后代选择器<ul>
+<li>语法: $(“A B”) 获得A标签内所有的B标签对象</li>
+</ul>
+</li>
+<li>子选择器<ul>
+<li>语法: $(“A&gt;B”) 获得A标签内所有的B标签子对象    只有子,没有孙子 </li>
+</ul>
+</li>
+</ol>
+</li>
+<li>属性选择器 <ol>
+<li>属性名称选择器<ul>
+<li>语法: $(“A[属性名]”) 包含指定属性的A标签对象</li>
+</ul>
+</li>
+<li>属性选择器<ul>
+<li>语法: $(“A[属性名=’值’]”) 包含指定属性等于值的A标签对象    注意单双引分离</li>
+</ul>
+</li>
+<li>复合属性选择器<ul>
+<li>语法: $(“A[属性名=’值’][]”) 包含指定的多个属性等于值的A标签对象</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>过滤选择器        理解记忆:在已有选择器上增加各种约束<ol>
+<li>首元素选择器<ul>
+<li>语法: $(选择器:first)获取选择的元素中的第一个元素对象</li>
+</ul>
+</li>
+<li>尾元素选择器<ul>
+<li>语法: $(选择器:last)获取选择的元素中的最后一个元素对象</li>
+</ul>
+</li>
+<li>非元素选择器<ul>
+<li>语法: $(选择器:not(selector))获取选择的元素但不包括指定元素对象</li>
+</ul>
+</li>
+<li>偶数选择器<ul>
+<li>语法: $(选择器:even)获取选择的元素中的偶数元素对象,从0开始计数</li>
+</ul>
+</li>
+<li>奇数选择器<ul>
+<li>语法: $(选择器:odd)获取选择的元素中的奇数元素对象,从0开始计数</li>
+</ul>
+</li>
+<li>等于索引选择器<ul>
+<li>语法: $(选择器:eq(index))获取选择的元素中的指定索引元素对象,从0开始计数</li>
+</ul>
+</li>
+<li>大于索引选择器<ul>
+<li>语法: $(选择器:gt(index))获取选择的元素中的指定索大于引元素对象,从0开始计数</li>
+</ul>
+</li>
+<li>小于索引选择器<ul>
+<li>语法: $(选择器:lt(index))获取选择的元素中的指定小于索引元素对象,从0开始计数</li>
+</ul>
+</li>
+<li>标题选择器<ul>
+<li>语法: $(选择器:header)获取标题元素对象,固定</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>表单过滤选择器<ol>
+<li>可用元素选择器<ul>
+<li>语法: $(选择器:enabled)获取可用元素对象</li>
+</ul>
+</li>
+<li>不可用元素选择器<ul>
+<li>语法: $(选择器:disabled)获取不可用元素对象</li>
+</ul>
+</li>
+<li>选中选择器<ul>
+<li>语法: $(选择器:checked)获取单选/复选框选中的元素对象</li>
+</ul>
+</li>
+<li>选中选择器<ul>
+<li>语法: $(选择器:selected)获取下拉框选中的元素对象</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><ol>
+<li>内容操作<ol>
+<li>html():获取/设置元素的标签体内容        原样输出,内部标签也一样</li>
+<li>text():获取/设置元素标签体纯文本内容    只获取纯文本,标签不获取</li>
+<li>val(): 获取/设置元素的value属性值</li>
+<li>设置:只需导入参数即可    </li>
+</ol>
+</li>
+<li>属性操作<ol>
+<li>通用属性操作<ol>
+<li>attr():获取/设置元素的属性</li>
+<li>removeAttr():删除属性</li>
+<li>prop():获取/设置元素的</li>
+<li>removeProp():删除属性<br> *attr和prop区别?<pre><code>1. 如果操作的是元素的固有属性,用prop
+2. 如果操作的是元素的自定义属性,使用attr</code></pre></li>
+</ol>
+</li>
+<li>对class属性操作<ol>
+<li>addClass():添加class属性值</li>
+<li>removeClass():删除class属性值</li>
+<li>toggleClass():切换class属性<ul>
+<li>若已有,则删除该属性,再次点击则恢复</li>
+</ul>
+</li>
+<li>css()</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>CRUD操作<ol>
+<li>append():父元素将子元素追加到末尾<ul>
+<li>对象1.append(对象2):将对象2添加到对象1的内部,且在末尾</li>
+</ul>
+</li>
+<li>prepend():父元素将子元素追加到开头<ul>
+<li>对象1.prepend(对象2):将对象2添加到对象1的内部,且在开头</li>
+</ul>
+</li>
+<li>appendTo():<ul>
+<li>对象1.appendTo(对象2):将对象1添加到对象2的内部,且在末尾</li>
+</ul>
+</li>
+<li>prependTo():<ul>
+<li>对象1.prependTo(对象2):将对象1添加到对象2的内部,且在开头</li>
+</ul>
+</li>
+<li>after():添加元素到元素的后边<ul>
+<li>对象1.after(对象2):将对象2添加到对象1后边,对象1和对象2兄弟关系(并级)</li>
+</ul>
+</li>
+<li>before():添加元素到元素前边<ul>
+<li>对象1.before(对象2):将对象2添加到对象1前边,对象1和对象2兄弟关系(并级)</li>
+</ul>
+</li>
+<li>insertAfter()<ul>
+<li>对象1.insertAfter(对象2):将对象1添加到对象2后边,对象1和对象2兄弟关系(并级)</li>
+</ul>
+</li>
+<li>insertBefore()<ul>
+<li>对象1.before(对象2):将对象1添加到对象2前边,对象1和对象2兄弟关系(并级)</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><ol>
+<li>隔行换色</li>
+<li>全选和全不选</li>
+<li>QQ表情选择</li>
+<li>多选下拉列表左右移动</li>
+</ol>
+<h3 id="JQuery高级"><a href="#JQuery高级" class="headerlink" title="JQuery高级"></a>JQuery高级</h3><ol>
+<li>动画 <ol>
+<li>三种方式显示和隐藏元素<ol>
+<li>默认显示和隐藏方式<ol>
+<li>show([speed],[easing],[fn])<ol>
+<li>参数:<ol>
+<li>speed:动画的速度.三个预定义值:(“slow”,”normal”,”fast”)或动画持续的毫秒值</li>
+<li>easing:用来指定切换效果,默认”swing”开始慢,中间快,后面慢,或者”linear”,匀速</li>
+<li>fn:动画在完成时,执行的函数,每个元素执行一次</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>hide([speed],[easing],[fn])</li>
+<li>toggle([speed],[easing],[fn])</li>
+</ol>
+</li>
+<li>滑动显示和隐藏方式<ol>
+<li>slideDown([speed],[easing],[fn])</li>
+<li>slideUp([speed],[easing],[fn])</li>
+<li>slideToggle([speed],[easing],[fn])</li>
+</ol>
+</li>
+<li>淡入淡出显示和隐藏方式<ol>
+<li>fadeIn([speed],[easing],[fn])</li>
+<li>fadeOut([speed],[easing],[fn])</li>
+<li>fadeToggle([speed],[easing],[fn])</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>遍历<ol>
+<li>js的遍历方式<ol>
+<li>for(初始化值;循环结束条件;步长)</li>
+</ol>
+</li>
+<li>jq的遍历方式<ol>
+<li>jq对象.each(callback)<ol>
+<li>语法:<ol>
+<li>JQ对象.each(function(index,element){})’<ol>
+<li>index:就是元素在集合中的索引</li>
+<li>element:就是集合中每一个元素对象</li>
+<li>this:集合中的每一个元素对象</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>回调函数返回值:<ol>
+<li>如果当前function返回为fales,则结束循环</li>
+<li>如果当前function返回为true,则结束本次循环,继续下次循环</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>$.each(object,[callback])</li>
+<li>for..of:JQ 3.0以后<ol>
+<li>同理于  增强for循环</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>事件绑定<ol>
+<li>JQ标准的绑定方式<ol>
+<li>JQ对象.事件方法(回调函数);<pre><code>* 表单对象.focus()获得焦点
+    * 表单对象.submit()让表单提交</code></pre></li>
+</ol>
+</li>
+<li>on绑定事件/off解除绑定<ol>
+<li>JQ对象.on(“事件名称”,回调函数)</li>
+<li>JQ对象.off(“事件名称”)    不传递,全部解绑</li>
+</ol>
+</li>
+<li>事件切换:toggle<ol>
+<li>JQ对象.toggle(fn1,fn2,fn3…)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>案例</li>
+<li>插件        </li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># -前端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/19/Ajax-Json/" rel="next" title="Ajax&Json">
+                <i class="fa fa-chevron-left"></i> Ajax&Json
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/19/jsp/" rel="prev" title="jsp">
+                jsp <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="邓浩" />
+            
+              <p class="site-author-name" itemprop="name">邓浩</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/Tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/deng19723" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="/images/wechat.png" target="_blank" title="Wechat">
+                      
+                        <i class="fa fa-fw fa-wechat"></i>Wechat</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1440197497&auto=0&height=66" ></iframe>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JQuery基础"><span class="nav-number">1.</span> <span class="nav-text">JQuery基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速入门"><span class="nav-number">1.2.</span> <span class="nav-text">快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择器"><span class="nav-number">1.3.</span> <span class="nav-text">选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM"><span class="nav-number">1.4.</span> <span class="nav-text">DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例"><span class="nav-number">1.5.</span> <span class="nav-text">案例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JQuery高级"><span class="nav-number">1.6.</span> <span class="nav-text">JQuery高级</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓浩</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/04/19/Jquery/';
+          this.page.identifier = '2020/04/19/Jquery/';
+          this.page.title = 'Jquery';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '318xTPO6TrMCmkKKPoiKkPvn-gzGzoHsz',
+        appKey: 'i9qK3ArJRoyQd8qrgrrv4sya',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="-java -Spring," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Deng" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="SpringMVC 模块化的开发 组件 前端控制器 会拦截所有资源,如果配置使用的是&#x2F;,页面引入的资源也会拦截.所有需要设置不拦截静态资源 &lt;mvc:resources location&#x3D;”资源位置不拦截” mapping&#x3D;”请求路径下不拦截”&gt;###请求参数绑定     表单提交的参数类型都是键值对形式的 如何绑定: 把表单提交的请求参数,作为控制器中方法的参数进行绑定 要求:提交表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/SpringMVC/index.html">
+<meta property="og:site_name" content="Deng">
+<meta property="og:description" content="SpringMVC 模块化的开发 组件 前端控制器 会拦截所有资源,如果配置使用的是&#x2F;,页面引入的资源也会拦截.所有需要设置不拦截静态资源 &lt;mvc:resources location&#x3D;”资源位置不拦截” mapping&#x3D;”请求路径下不拦截”&gt;###请求参数绑定     表单提交的参数类型都是键值对形式的 如何绑定: 把表单提交的请求参数,作为控制器中方法的参数进行绑定 要求:提交表">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-19T08:10:45.000Z">
+<meta property="article:modified_time" content="2020-04-19T09:00:26.157Z">
+<meta property="article:author" content="邓浩">
+<meta property="article:tag" content="-java -Spring">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/19/SpringMVC/"/>
+
+
+
+
+
+  <title>SpringMVC | Deng</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Deng</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-kinds">
+          <a href="/Kinds" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kinds
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-all">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            All
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/19/SpringMVC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邓浩">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Deng">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringMVC</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-19T16:10:45+08:00">
+                2020-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/19/SpringMVC/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/19/SpringMVC/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h2><ol>
+<li>模块化的开发</li>
+<li>组件<ol>
+<li>前端控制器<ol>
+<li>会拦截所有资源,如果配置使用的是/,页面引入的资源也会拦截.所有需要设置不拦截静态资源<ol>
+<li>&lt;mvc:resources location=”资源位置不拦截” mapping=”请求路径下不拦截”&gt;<br>###请求参数绑定</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>表单提交的参数类型都是键值对形式的</li>
+<li>如何绑定:<ol>
+<li>把表单提交的请求参数,作为控制器中方法的参数进行绑定</li>
+<li>要求:提交表单的name和参数的名称相同</li>
+</ol>
+</li>
+<li>类型:<ol>
+<li>JavaBean对象<ol>
+<li>控制器中的参数为javaBean对象.并且生成各个属性的setter方法.<ol>
+<li>注意:<ol>
+<li>如果javaBean对象中含有另一个Javabean,则需要使各个组件的name属性值,等于javabean对象名.属性</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>在页面中,各个组件的name属性值,必须和setter方法名称一致.去掉set大写变小写</li>
+<li>springMVC会自动封装成一个javaBean对象</li>
+</ol>
+</li>
+<li>集合类型 <ol>
+<li>封装到list集合中<ol>
+<li>页面中的组件的属性名为list集合名[0].javabean对象的属性名.list[0].username,list[0].age</li>
+</ol>
+</li>
+<li>封装到map集合中<ol start="2">
+<li>页面中的组件的属性名为map集合名[‘key名’].javabean对象的属性名.map[‘key名’].username,map[‘key名’].age</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>参数绑定中会出现中文乱码的问题(get请求方式不会)<ol>
+<li>可使用requset请求设置编码</li>
+<li>在web.xml中配置<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>在页面发送请求提交的数据中,所有的数据均为String字符串类型,但参数绑定时,springMVC自动将类型转换为要封装的数据类型<ol>
+<li>但是,有时候需要自定义类型转换<ol>
+<li>步骤:<ol>
+<li>实现Converter接口,实现该接口.重写转换方    法 ,Converter&lt;S,T&gt;,转换前数据类型S,转换后数据类型</li>
+<li>在配置文件中注册自定义类型转换器</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"ConversionService"</span> <span class="attr">class</span>=<span class="string">"org.springframework.context.support.ConversionServiceFactoryBean"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"converters"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"自定义类型转换器的全类名"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​            3. 还需要开启类型转换器</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> <span class="attr">conversion-service</span>=<span class="string">"ConversionService"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h3><ol>
+<li><p>返回值String</p>
+<ol>
+<li>视图解析器会把返回的String类型根据视图解析器配置的路径和文件类型找返回值的字符串.文件类型相匹配的文件</li>
+</ol>
+</li>
+<li><p>返回值void</p>
+<ol>
+<li>默认在视图解析器配置下的路径,找当前请求路径名.文件类型的文件,如果无,则404</li>
+<li>如果想跳转到指定页面,只能使用request对象的转发方法</li>
+<li>或这response对象的重定向方法</li>
+</ol>
+</li>
+<li><p>返回值ModelAndView</p>
+<ol>
+<li>创建ModelAndView对象</li>
+<li>ModelAndView对象可以存值到request域中<ol>
+<li>mv.addObject</li>
+</ol>
+</li>
+<li>ModelAndView对象也可以指定跳转的页面<ol>
+<li>mv.setViewName<ol>
+<li>此方法也会调用视图解析器,解析到指定的目录文件下,然后加上文件类型</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>使用forward和redirect关键字</p>
+<ol>
+<li>在返回值为String类型下<ol>
+<li>此方法不能调用视图解析器,故需要自己写路径/文件名<ol>
+<li>return “forward:/WEB-INF/pages/success.jsp”</li>
+<li>return “redirect:success.jsp”重定向无法请求到WEB-INF目录下</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>响应Json数据</p>
+<ol>
+<li>如需封装到javabean中,需要json解析器,使用@RequestBody注解.然后springMVC自动将json数据转为javabean对象<br>###常用的注解</li>
+<li>获取request和response对象<ol>
+<li>在控制器方法上,加(HttpServletRequest request,HttpServletresponse response) </li>
+</ol>
+</li>
+<li>@RequestMapping<ol>
+<li>类上:请求的一级目录:模块路径</li>
+<li>方法上:请求的二级目录</li>
+</ol>
+</li>
+<li>@RequestParam<ol>
+<li>把请求中指定名称的参数给控制器中的形参赋值</li>
+<li>value:请求参数中的名称,和name值一样<ol>
+<li>用于指定请求中的参数名.</li>
+<li>使用此注解后,参数绑定时,名称不需要相同,但@RequestParam()中的name或者value属性值必须和,请求中的参数名相同</li>
+</ol>
+</li>
+<li>required:请求参数中是否必须提供此参数,默认值:true.表示必须提供,如果不提供将报错</li>
+</ol>
+</li>
+<li>@RequestBody<ol>
+<li>用于获取请求体内容.直接使用得到的是key=value的结构的数据</li>
+<li>get请求方式不可以.</li>
+<li>属性<ol>
+<li>required:是否必须有请求体,默认值是:true.当值为true时,get方式会报错.如果值为false时,get请求得到的是null</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>@PathVariable<ol>
+<li>拥有绑定url中的占位符的.例如:url中有/user/{id},{id}是占位符</li>
+<li>属性:<ol>
+<li>value:指定url中占位符名称,必须和@RequestMapping中的url的占位符名称一致</li>
+</ol>
+</li>
+<li>Restful风格的URL<ol>
+<li>请求路径一样,可以根据不同的请求方式,去执行后台的不同方法<ol>
+<li>如:同样的请求路径,但是不同的请求是get post put等等,会执行不同的方法</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>@RequestHeader<ol>
+<li>用于获取请求消息头</li>
+<li>属性<ol>
+<li>value:提供消息头名称</li>
+<li>required:是否必须有此消息头</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>@CookieValue<ol>
+<li>用于把指定的cookie名称的值传入控制器方法参数<ol>
+<li>属性:<ol>
+<li>value:指定cookie的名称</li>
+<li>required:是否必须有此cookie</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>@ModelAttributes    感觉有点用!!!!<ol>
+<li>可以用于修饰方法和参数<ol>
+<li>方法:表示当前方法会在控制器方法执行之前,先执行,它可以修饰没有返回值的方法,也可以修饰有具体返回值的方法</li>
+<li>参数:获取指定的数据给参数赋值</li>
+</ol>
+</li>
+<li>属性:<ol>
+<li>value:用于获取数据的key.key可以是属性名称,也可以是map结构的key</li>
+</ol>
+</li>
+<li>应用场景:<ol>
+<li>当表单提交数据不是完整的实体类数据时,保证没有提交数据的字段使用数据库原来的数据</li>
+<li>例如:我们在编辑一个用户时,用户有一个创建信息的字段,该字段的值不允许被修改,在提交表单数据时肯定没有此字段的内容,一旦更新会把该字段内容置为null,此时就可以使用此注解解决</li>
+</ol>
+</li>
+<li>在方法上<ol>
+<li>例如,页面传过来的数据不完整,如何利用该注解使一个方法在提交的方法之前执行,可以先行查询数据库然后,再返回一个javabean对象,然后请求的方法再接受javabean对象<ol start="5">
+<li>在参数上</li>
+</ol>
+</li>
+<li>当此注解在方法上,且方法无返回值时,需要将查询的数据封装到javabean中,再将其封装到map集合中去.</li>
+<li>然后在请求执行的方法的参数列表上,加上该注解并提供map集合中封装的javabean对象的key值.然后用该javabean接受</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>@SessionAttribute:只能作用于类上<ol>
+<li>Model类,ModelMap类,SessionStatus<ol>
+<li>Model可以将参数存入到request域中</li>
+<li>ModelMap可以取出存入到Map集合中</li>
+<li>SessionStatus可以设置域中值的状态</li>
+</ol>
+</li>
+<li>用于多次执行控制器方法间的参数共享<ol>
+<li>属性:<ol>
+<li>value:用于指定存入的属性名称</li>
+<li>type:用于指定存入的数据类型</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>HiddentHttpMehtodFilter过滤器</p>
+<ol>
+<li>由于浏览器form表单只支持get和post请求,而DELETE,PUT等不支持.此过滤器可以将浏览器的请求方式改为指定的请求方式,发送给控制器方法,使得表单提交支持,get,post,put,delete请求</li>
+<li>使用步骤:<ol>
+<li>在web.xml中配置该过滤器</li>
+<li>请求方式必须使用post请求</li>
+<li>按照要求提供_method请求参数,该参数的取值就是需要请求的方式<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">name</span>=<span class="string">"_method"</span> <span class="attr">value</span>=<span class="string">"PUT"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>执行原理:</p>
+<ol>
+<li>前端页面选择了上传文件提交了一个request请求</li>
+<li>前端控制器servlet接受到文件上传请求,然后将调用文件解析器</li>
+<li>文件解析器解析request请求,返回一个MultipartFile对象</li>
+<li>前端控制器将MultipartFile对象传给请求的控制器对象的方法</li>
+<li>请求的方法接收MultipartFile对象.<ol>
+<li>ps:MultipartFile对象名称,必须和前端的文件上传的组件的name值相同,推荐为upload</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>form表单的enctype取值必须是:multipart/form-data</p>
+<ol>
+<li>默认值:application/x-www-form-urlencodied</li>
+</ol>
+</li>
+<li><p>method属性取值必须是Post</p>
+</li>
+<li><p>提供一个文件选择域</p>
+</li>
+<li><p>步骤:</p>
+<ol>
+<li>配置文件解析器对象:<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"multipartResovler"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.multipart.commons.CommonsMultipartResolver"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxUploadSize"</span> <span class="attr">value</span>=<span class="string">"10*1024*1024"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>参数上配置接收MultipartFile对象</p>
+<ol>
+<li>有方法获取名称.getOriginalFilename()</li>
+<li>上传文件.transferTo(File file)</li>
+</ol>
+</li>
+</ol>
+<h4 id="跨服务器上传"><a href="#跨服务器上传" class="headerlink" title="跨服务器上传"></a>跨服务器上传</h4><ol>
+<li>导入jar,jersey</li>
+<li>创建客户端对象<ol>
+<li>Client client=Client.create();</li>
+</ol>
+</li>
+<li>和图片服务器进行链接<ol>
+<li>path=”存入的服务器的路径”</li>
+<li>WebResource webResource=client.resource(path+filename);</li>
+</ol>
+</li>
+<li>上传文件<ol>
+<li>webResource.put(upload.getBytes());<br>##异常处理</li>
+</ol>
+</li>
+<li>出现异常跳到友好界面</li>
+<li>异常处理器组件</li>
+<li>步骤<ol>
+<li>编写自定义异常类(做提示信息)</li>
+<li>编写异常处理器(跳转到提示页面)    <ol>
+<li>必须实现HandlerExceptionResolver</li>
+<li>重写方法,方法返回ModelAndView类型.可以到错误跳转页面</li>
+</ol>
+</li>
+<li>配置异常处理器<ol>
+<li><bean id="异常处理器id值" class="异常处理器类路径"></bean><br>##拦截器</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>拦截器和过滤器的区别<ol>
+<li>过滤器是servlet规范中的一部分.任何java web都可以使用</li>
+<li>拦截器,是SpringMVC框架的,只有SpringMVC框架才能用</li>
+<li>过滤器在url-pattern中配置了/*才能对所有资源拦截</li>
+<li>拦截器只会拦截访问控制器的方法.静态资源不拦截</li>
+</ol>
+</li>
+<li>步骤<ol>
+<li>编写拦截器类<ol>
+<li>改类必须实现HandlerInterceptor,</li>
+<li>重写方法preHandle,预处理.在controller方法执行之前.返回true代表放行.false不放行</li>
+<li>postHandle,后处理方法.在controller执行之后的执行,在跳转页面之前,若controller中返回了跳转页面,且此也跳转,则不会跳转到controller指定的页面</li>
+<li>afterCompletion.在跳转页面之后执行</li>
+</ol>
+</li>
+<li>配置拦截器<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">//要拦截的方法</span><br><span class="line">	<span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">//不要拦截的方法</span><br><span class="line">//<span class="tag">&lt;<span class="name">mvc:exclude-mapping</span> <span class="attr">path</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">//配置拦截器对象</span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"拦截器类类路径"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Spring整合SpringMVC和Mybatis"><a href="#Spring整合SpringMVC和Mybatis" class="headerlink" title="Spring整合SpringMVC和Mybatis"></a>Spring整合SpringMVC和Mybatis</h3></li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java-Spring/" rel="tag"># -java -Spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/19/SpringData/" rel="next" title="SpringData">
+                <i class="fa fa-chevron-left"></i> SpringData
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/19/spring%E6%B3%A8%E8%A7%A3%E7%89%88/" rel="prev" title="spring注解版">
+                spring注解版 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="邓浩" />
+            
+              <p class="site-author-name" itemprop="name">邓浩</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/Tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/deng19723" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="/images/wechat.png" target="_blank" title="Wechat">
+                      
+                        <i class="fa fa-fw fa-wechat"></i>Wechat</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1440197497&auto=0&height=66" ></iframe>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC"><span class="nav-number">1.</span> <span class="nav-text">SpringMVC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#响应"><span class="nav-number">1.1.</span> <span class="nav-text">响应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件上传"><span class="nav-number">1.2.</span> <span class="nav-text">文件上传</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#跨服务器上传"><span class="nav-number">1.2.1.</span> <span class="nav-text">跨服务器上传</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring整合SpringMVC和Mybatis"><span class="nav-number">1.3.</span> <span class="nav-text">Spring整合SpringMVC和Mybatis</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邓浩</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2020/04/19/SpringMVC/';
+          this.page.identifier = '2020/04/19/SpringMVC/';
+          this.page.title = 'SpringMVC';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '318xTPO6TrMCmkKKPoiKkPvn-gzGzoHsz',
+        appKey: 'i9qK3ArJRoyQd8qrgrrv4sya',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
