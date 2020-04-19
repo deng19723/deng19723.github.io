@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Deng</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-04-19T05:16:05.573Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>邓浩</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git&amp;&amp;Github</title>
+    <link href="http://yoursite.com/2020/04/19/Git-Github/"/>
+    <id>http://yoursite.com/2020/04/19/Git-Github/</id>
+    <published>2020-04-19T05:04:20.000Z</published>
+    <updated>2020-04-19T05:16:05.573Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="Git-分布式版本控制系统"><a href="#Git-分布式版本控制系统" class="headerlink" title="Git(分布式版本控制系统)"></a>Git(分布式版本控制系统)</h3><h4 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h4><ol><li>各个开发人员,并发进行模块编写,会产生不同的版本,然后汇总,手工合并代码,工程量巨大,git可以解决..git也完美的解决了合并冲突的问题</li><li>集中式版本控制系统存在单点故障:<ol><li>当服务器出现故障,历史版本及文件信息全部消失,只有客户端中存在当前版本的信息,且各个客户端版本不同,无法找回历史,且合并也存在问题</li></ol></li></ol><h5 id="协同修改"><a href="#协同修改" class="headerlink" title="协同修改"></a>协同修改</h5><ol><li>多人并行不悖的修改服务器的同一个文件</li></ol><h5 id="数据备份"><a href="#数据备份" class="headerlink" title="数据备份"></a>数据备份</h5><ol><li>不仅保存目录和文件的当前状态,还保存每一个提交的历史状态</li></ol><h5 id="版本管理"><a href="#版本管理" class="headerlink" title="版本管理"></a>版本管理</h5><ol><li>保存文件信息,避免重复数据</li></ol><h5 id="权限控制"><a href="#权限控制" class="headerlink" title="权限控制"></a>权限控制</h5><ol><li>对团队参与开发的人员进行权限控制</li><li>团队外进行代码审核<ol><li><strong>fork到本用户的远程仓库–&gt;clone克隆到本地–&gt;mod对文件或者代码进行修改–&gt;push推送到远程仓库–&gt;pull request(发送拉取请求,仓库所有者进行审核,审核通过,则代码合并)</strong></li></ol></li></ol><h5 id="历史记录"><a href="#历史记录" class="headerlink" title="历史记录"></a>历史记录</h5><ol><li>查看修改人、修改时间、日志信息</li><li>将本地文件恢复到某个历史状态</li></ol><h5 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h5><ol><li>允许发开团队在工作过程中同时推进任务</li></ol><h4 id="Git的结构"><a href="#Git的结构" class="headerlink" title="Git的结构"></a>Git的结构</h4><h5 id="工作区"><a href="#工作区" class="headerlink" title="工作区"></a>工作区</h5><ol><li>写代码</li></ol><h5 id="暂存区"><a href="#暂存区" class="headerlink" title="暂存区"></a>暂存区</h5><ol><li>临时存储,可以commit到本地库,也可以git restore –staged hello.txt返回到工作区</li></ol><h5 id="本地库"><a href="#本地库" class="headerlink" title="本地库"></a>本地库</h5><ol><li>存放历史版本的文件</li></ol><h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><h5 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h5><h6 id="git-init-本地库初始化"><a href="#git-init-本地库初始化" class="headerlink" title="git init(本地库初始化)"></a>git init(本地库初始化)</h6><ol><li>会生成一个.git目录和文件,存放本地库相关的内容</li></ol><h6 id="git-config"><a href="#git-config" class="headerlink" title="git config"></a>git config</h6><ol start="0"><li>区别不同开发的人员</li><li>git config &lt;user.name&gt;/&lt;user.email&gt;(设置项目级别,仅在本地库范围内有效)</li><li>git config –global &lt;user.name&gt;/&lt;user.email&gt;(设置系统用户级别,在当前windows用户下有效)</li></ol><h6 id="git-status-状态查看操作"><a href="#git-status-状态查看操作" class="headerlink" title="git status( 状态查看操作)"></a>git status( 状态查看操作)</h6><h6 id="git-add-filename-添加到暂存区"><a href="#git-add-filename-添加到暂存区" class="headerlink" title="git add [filename] (添加到暂存区)"></a>git add [filename] (添加到暂存区)</h6><h6 id="git-commit-m-“message”-filename"><a href="#git-commit-m-“message”-filename" class="headerlink" title="git commit -m “message” [filename]"></a>git commit -m “message” [filename]</h6><h6 id="git-log-查看历史版本-不好用"><a href="#git-log-查看历史版本-不好用" class="headerlink" title="git log(查看历史版本 不好用)"></a>git log(查看历史版本 不好用)</h6><p>####### git log –pretty=online (每条记录显示一行)<br>####### git log online (只显示部分哈希值,每条记录显示一行)<br>####### git reflog (只显示部分哈希值,且有HEAD指针的情况,每条记录显示一行)</p><h6 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h6><p>####### git reset –hard [历史版本哈希索引值] (前往历史版本)</p><ol><li>本地库移动HEAD指针</li><li>重置暂存区</li><li>重置工作区<br>####### git reset –mixed [历史版本哈希索引值] (前往历史版本)</li><li>本地库移动HEAD指针</li><li>重置暂存区<br>####### git reset –soft  [历史版本哈希索引值] (前往历史版本)仅在本地库移动HEAD指针</li><li>也可以跟^(有几个异或符号就代表退后几步)</li><li>也可以跟~n(写几就回退几步)</li><li>这两只能后退,不能前进</li></ol><h6 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h6><ol><li>无参表示在工作区时,文件更改的差异,,,,,红色代表删除,绿色代表新增(更改)<br>####### git [filename] HEAD(可以是本地库的历史版本) apple.txt</li><li>和本地库中的文件进行比较</li><li>不指定文件名会比较所有文件</li></ol><h6 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h6><p>####### git branch -v(查看所有分支)<br>####### git branch [branchName] (创建新分支)<br>####### git checkout [branchName] (切换分支)<br>####### 合并分支</p><ol><li>必须先切换到需要接受修改的分支 git checkout [name]</li><li>执行merge [有新内容的分支名]<br>######## 合并冲突</li><li>当前分支和另一分支都对同一个内容进行了更改</li><li>解决<ol><li>编辑文件</li><li>更改到满意的程度,保存退出</li><li>git add [filename]</li><li>git commit -m “message” 不加文件名</li></ol></li></ol><h6 id="遇到问题-删除文件找回"><a href="#遇到问题-删除文件找回" class="headerlink" title="遇到问题(删除文件找回)"></a>遇到问题(删除文件找回)</h6><p>####### 删除已提交到本地库</p><ol><li>回退到未删除的版本<br>####### 删除操作存在到暂存区</li><li>回退到当前版本</li></ol><h5 id="远程库操作"><a href="#远程库操作" class="headerlink" title="远程库操作"></a>远程库操作</h5><h6 id="给远程库起别名"><a href="#给远程库起别名" class="headerlink" title="给远程库起别名"></a>给远程库起别名</h6><ol><li>git remote add origin(别名) 远程库地址</li><li>git remote -v 查看别名</li></ol><h6 id="git-push-origin-远程库别名-master-分支"><a href="#git-push-origin-远程库别名-master-分支" class="headerlink" title="git push origin(远程库别名) master(分支)"></a>git push origin(远程库别名) master(分支)</h6><h5 id="克隆远程库"><a href="#克隆远程库" class="headerlink" title="克隆远程库"></a>克隆远程库</h5><ol><li>git clone 克隆地址</li><li>克隆完成,初始化自动完成,别名也附带</li></ol><h5 id="拉取操作-保持版本一致"><a href="#拉取操作-保持版本一致" class="headerlink" title="拉取操作(保持版本一致)"></a>拉取操作(保持版本一致)</h5><ol><li>git pull [远程地址别名]  [远程分支别名] </li><li>git pull = git fetch [远程地址别名]  [远程分支别名] +git merge(拿到文件+合并)</li></ol><h5 id="冲突处理"><a href="#冲突处理" class="headerlink" title="冲突处理"></a>冲突处理</h5><ol><li>若本地的文件和不是基于远程库的最新版进行的修改,则无法进行push</li><li>需要先pull下来,再进行修改</li></ol><h5 id="跨团队协作"><a href="#跨团队协作" class="headerlink" title="跨团队协作"></a>跨团队协作</h5><ol><li>fork 到个人的远程库</li><li>clone到个人本地库</li><li>进行修改</li><li>push到个人的远程库</li><li>pull request 到对方的远程库</li><li>审核完成</li><li>合并分支即可</li></ol><h3 id="Github-代码托管中心"><a href="#Github-代码托管中心" class="headerlink" title="Github(代码托管中心)"></a>Github(代码托管中心)</h3><h4 id="代码托管中心"><a href="#代码托管中心" class="headerlink" title="代码托管中心"></a>代码托管中心</h4><h4 id="SSH免密登录"><a href="#SSH免密登录" class="headerlink" title="SSH免密登录"></a>SSH免密登录</h4><ol><li>ssh-keygen -t rsa -C <a href="mailto:812227969@qq.com">812227969@qq.com</a></li><li>cat id_rsa.pub</li><li>复制前往github  settings</li><li>OOK<img src="/2020/04/19/Git-Github/OK.png" class><h5 id="github"><a href="#github" class="headerlink" title="github"></a>github</h5></li></ol><h5 id="gitlab"><a href="#gitlab" class="headerlink" title="gitlab"></a>gitlab</h5><h5 id="码云"><a href="#码云" class="headerlink" title="码云"></a>码云</h5>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+  </entry>
+  
+</feed>
