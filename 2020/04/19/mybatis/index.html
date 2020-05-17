@@ -91,7 +91,7 @@
 <meta property="og:description" content="mybatisOGNL表达式 通过对象的取值方法来获取数据 见机行事  mybatis的环境搭建 创建maven工厂并导入坐标 创建实体类和dao接口 创建Mybatis的主配置文件 sqlMapConfig.xml 引入约束 标签下配置 标签优先于任何标签,用于加载其他配置文件,一般引入mysql配置文件 resource属性 url属性:必须按照url写法来写地址 协议 主机 端口 URI U">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-19T08:10:08.000Z">
-<meta property="article:modified_time" content="2020-04-19T08:57:38.318Z">
+<meta property="article:modified_time" content="2020-05-17T08:09:47.945Z">
 <meta property="article:author" content="邓浩">
 <meta property="article:tag" content="-java">
 <meta name="twitter:card" content="summary">
@@ -286,6 +286,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/codeStudy/" itemprop="url" rel="index">
+                    <span itemprop="name">codeStudy</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -541,9 +563,9 @@
 <li>在配置文件中<insert>标签的内部加上<selectKey><ol start="3">
 <li><selectKey>
        1. keyProperty属性:属性名
-           2. keyColumn属性:数据库字段名
+                2. keyColumn属性:数据库字段名
        3. resultType属性:返回值类型
-         4. order属性:枚举值.有AFTER,BEFORE两个取值,是在执行语句前执行还是在执行语句后执行</selectKey></li>
+            4. order属性:枚举值.有AFTER,BEFORE两个取值,是在执行语句前执行还是在执行语句后执行</selectKey></li>
 </ol>
 </selectKey></insert></li>
 </ol>
@@ -552,15 +574,15 @@
 <ol>
 <li>使用resultMap标签<ol>
 <li>id标签(主键)<pre><code>1. property属性:
-    3. 实体类的属性名
+         3. 实体类的属性名
 2. column属性:数据库列名</code></pre></li>
 <li>reslut标签(非主键)<pre><code>1. property属性:实体类的属性名
-    2. column属性:数据库列名</code></pre></li>
+         2. column属性:数据库列名</code></pre></li>
 <li>association标签,用于配置封装一个对象,一对一的关系映射,也使用id和result标签配置成员属性<pre><code>1. javaType属性:用于提示封装到那个对象</code></pre></li>
 <li>collection标签:用于封装一个集合对象.一对多的关系映射也使用id和result标签配置成员属性<pre><code>1. 属性:
-        1. property属性:成员属性名
+             1. property属性:成员属性名
             2. column属性:用那个字段查询的
-                3. oftype属性:用于封装到那个对象</code></pre></li>
+                     3. oftype属性:用于封装到那个对象</code></pre></li>
 </ol>
 </li>
 <li>返回值类型为reslutMap</li>
@@ -867,7 +889,7 @@
               
               
               <div class="site-state-item site-state-categories">
-                <a href="/Kinds/index.html">
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
